@@ -4,7 +4,7 @@ import type { MembroEquipe } from "@/types/content";
 
 /**
  * Equipe do escritório. Apenas qualificação verdadeira e verificável:
- * títulos, cargos, filiações e tempo de atuação — permitido e recomendado
+ * títulos, cargos, filiações e tempo de atuação, permitido e recomendado
  * pelo Provimento 205/2021. Nenhuma menção a resultados ou casos.
  */
 export const equipe: MembroEquipe[] = [

@@ -25,7 +25,7 @@ export interface Area {
   metaDescricao: string;
   /** Dois parágrafos curtos, voz ativa */
   descricao: [string, string];
-  /** O que o escritório faz na área — 4 a 6 subtemas */
+  /** O que o escritório faz na área: 4 a 6 subtemas */
   subtemas: string[];
   /** Situações concretas em que procurar o escritório */
   quandoProcurar: string[];
@@ -58,7 +58,7 @@ export interface MembroEquipe {
   resumo?: string;
   /**
    * Recorte das credenciais para exibição em destaque, com ícone. Nada aqui
-   * pode ir além do que já consta na lista de credenciais — o Provimento
+   * pode ir além do que já consta na lista de credenciais. O Provimento
    * 205/2021 admite qualificação verificável, não construção publicitária.
    */
   destaques?: DestaqueCredencial[];
@@ -71,7 +71,7 @@ export interface Artigo {
   slug: string;
   title: string;
   excerpt: string;
-  /** ISO 8601 — AAAA-MM-DD */
+  /** ISO 8601, AAAA-MM-DD */
   date: string;
   readingTime: number;
   author: string;

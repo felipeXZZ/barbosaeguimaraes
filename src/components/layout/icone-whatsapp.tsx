@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-/** Glifo do WhatsApp em SVG inline — evita dependência de pacote de marcas. */
+/** Glifo do WhatsApp em SVG inline: evita dependência de pacote de marcas. */
 export function IconeWhatsApp(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

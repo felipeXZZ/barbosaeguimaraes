@@ -46,7 +46,7 @@ export function ContatoFinal() {
                   className="mt-1 size-4 shrink-0 text-dourado-500"
                 />
                 <address className="not-italic">
-                  {site.endereco.logradouro} — {site.endereco.bairro}
+                  {site.endereco.logradouro}, {site.endereco.bairro}
                   <br />
                   {site.endereco.cidade}/{site.endereco.uf}, CEP{" "}
                   {site.endereco.cep}

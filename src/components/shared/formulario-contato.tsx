@@ -29,7 +29,7 @@ function mascararTelefone(valor: string): string {
 type Estado = "inativo" | "enviando" | "sucesso" | "erro";
 
 export function FormularioContato({
-  /** "curto" omite a área de interesse — usado no bloco final da home. */
+  /** "curto" omite a área de interesse: usado no bloco final da home. */
   variante = "completo",
   tema = "claro",
   areaPreSelecionada,

@@ -2,7 +2,7 @@
 
 Coloque os arquivos com **exatamente** estes nomes. Enquanto um arquivo não
 existir, o site exibe automaticamente um placeholder tratado no padrão visual
-(fundo areia, filete dourado e o caminho esperado) — nunca um retângulo vazio.
+(fundo areia, filete dourado e o caminho esperado), nunca um retângulo vazio.
 
 Formato recomendado: JPG ou WebP, qualidade 80, sem texto embutido na imagem.
 As fotos são exibidas em cor original. Suba já tratadas, com luz e recorte

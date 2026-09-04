@@ -14,7 +14,7 @@ const enderecoSchema = {
   addressCountry: site.endereco.pais,
 };
 
-/** LegalService do escritório — vai no layout raiz. */
+/** LegalService do escritório, vai no layout raiz. */
 export function jsonLdEscritorio() {
   return {
     "@context": "https://schema.org",

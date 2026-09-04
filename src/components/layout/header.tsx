@@ -67,7 +67,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-4 lg:h-20">
           <Link
             href="/"
-            aria-label="Barbosa e Guimarães Advogados Associados — página inicial"
+            aria-label="Barbosa e Guimarães Advogados Associados: página inicial"
             className="shrink-0"
           >
             <Logo prioridade alt="" />

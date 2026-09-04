@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-/** Filete dourado de 1px — elemento gráfico recorrente de separação. */
+/** Filete dourado de 1px: elemento gráfico recorrente de separação. */
 export function Filete({ className }: { className?: string }) {
   return <span aria-hidden className={cn("filete", className)} />;
 }

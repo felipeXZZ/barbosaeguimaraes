@@ -8,7 +8,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =========================================================================
-   Barbosa e Guimarães Advogados Associados — Design Tokens
+   Barbosa e Guimarães Advogados Associados: Design Tokens
    Todos os pares texto/fundo em uso foram medidos e passam WCAG AA.
    O valor entre parênteses é a razão de contraste calculada.
    ========================================================================= */
@@ -16,30 +16,30 @@
 :root {
   color-scheme: light;
 
-  /* Bordô — herança institucional */
+  /* Bordô: herança institucional */
   --bordo-900: #4a0e11; /* header, footer, overlay do hero */
   --bordo-800: #6b1216; /* blocos escuros secundários */
   --bordo-700: #8c1a1f; /* cor institucional principal, botões */
   --bordo-600: #a8232a; /* hover de botão */
 
-  /* Dourado — sóbrio, substitui o amarelo berrante do site antigo */
+  /* Dourado: sóbrio, substitui o amarelo berrante do site antigo */
   --dourado-500: #c9a227; /* filetes e ícones SOBRE BORDÔ (6.37:1) */
   --dourado-400: #d9bc5c; /* texto curto sobre bordô (8.29:1) */
   --dourado-700: #7a6212; /* texto/filete sobre fundo claro (5.53:1) */
 
-  /* Areia — fundos claros */
+  /* Areia: fundos claros */
   --areia-50: #faf8f5; /* fundo padrão das páginas */
   --areia-100: #f1ece4; /* superfícies e cards */
   --areia-200: #e3dacb; /* bordas decorativas (não textuais) */
 
-  /* Grafite — texto */
+  /* Grafite: texto */
   --grafite-900: #1a1a1a; /* texto principal sobre claro (16.42:1) */
   --grafite-600: #4a4a4a; /* texto secundário sobre claro (8.36:1) */
   --grafite-400: #8f8f8f; /* borda de controle de formulário (3.05:1) */
 
   /* Verde do WhatsApp, calibrado para acessibilidade.
      O verde de marca (#25D366) daria apenas 1.98:1 com o glifo branco e
-     1.87:1 contra o fundo areia — invisível. Este é o tom mais vivo que ainda
+     1.87:1 contra o fundo areia, invisível. Este é o tom mais vivo que ainda
      passa nos dois limites de 3:1 exigidos para elemento gráfico: 3.51:1 no
      glifo branco e 3.32:1 do botão contra o fundo areia. Não clarear mais. */
   --verde-whatsapp: #0e9d56;

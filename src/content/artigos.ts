@@ -77,7 +77,7 @@ Peças que você redigiu, audiências que acompanhou, pesquisas que conduziu: es
 
 ## Não invente o que não sabe
 
-É comum que se pergunte sobre um tema fora da sua especialidade. Dizer que não domina o assunto e descrever como faria a pesquisa demonstra honestidade intelectual e método — dois atributos centrais na advocacia. Respostas improvisadas produzem o efeito contrário.
+É comum que se pergunte sobre um tema fora da sua especialidade. Dizer que não domina o assunto e descrever como faria a pesquisa demonstra honestidade intelectual e método, dois atributos centrais na advocacia. Respostas improvisadas produzem o efeito contrário.
 
 ## Cuide da comunicação escrita
 

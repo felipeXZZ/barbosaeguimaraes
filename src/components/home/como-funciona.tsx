@@ -13,7 +13,7 @@ const passos = [
     numero: "02",
     titulo: "Análise preliminar",
     texto:
-      "Reunimos os documentos disponíveis e verificamos a matéria envolvida, os prazos aplicáveis e a via adequada — administrativa, extrajudicial ou judicial.",
+      "Reunimos os documentos disponíveis e verificamos a matéria envolvida, os prazos aplicáveis e a via adequada: administrativa, extrajudicial ou judicial.",
   },
   {
     numero: "03",

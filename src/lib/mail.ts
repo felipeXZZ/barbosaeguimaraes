@@ -8,7 +8,7 @@ import type { DadosContato } from "@/lib/schemas";
 
 /**
  * Integração de e-mail isolada. Para trocar Resend por Nodemailer ou por
- * outro provedor, basta reescrever `enviarEmailContato` — nada mais no
+ * outro provedor, basta reescrever `enviarEmailContato`. Nada mais no
  * projeto conhece o provedor.
  */
 
@@ -48,7 +48,7 @@ export async function enviarEmailContato(dados: DadosContato): Promise<void> {
     from: `Site ${site.nomeCurto} <${REMETENTE}>`,
     to: [DESTINO],
     replyTo: dados.email,
-    subject: `Contato pelo site — ${area} — ${dados.nome}`,
+    subject: `Contato pelo site: ${area}, ${dados.nome}`,
     text: [
       `Nome: ${dados.nome}`,
       `E-mail: ${dados.email}`,

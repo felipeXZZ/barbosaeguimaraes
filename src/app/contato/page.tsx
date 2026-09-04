@@ -61,7 +61,7 @@ export default function PaginaContato() {
                     <br />
                     {site.endereco.logradouro}
                     <br />
-                    {site.endereco.bairro} — {site.endereco.cidade}/
+                    {site.endereco.bairro}, {site.endereco.cidade}/
                     {site.endereco.uf}
                     <br />
                     CEP {site.endereco.cep}

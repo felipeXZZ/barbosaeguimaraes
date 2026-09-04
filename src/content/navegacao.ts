@@ -6,7 +6,7 @@ export interface ItemNavegacao {
 /** Navegação principal do header e do menu mobile. */
 export const navegacaoPrincipal: ItemNavegacao[] = [
   { href: "/", rotulo: "Início" },
-  { href: "/sobre", rotulo: "O escritório" },
+  { href: "/sobre", rotulo: "Sobre" },
   { href: "/areas-de-atuacao", rotulo: "Áreas de atuação" },
   { href: "/equipe", rotulo: "Equipe" },
   { href: "/artigos", rotulo: "Artigos" },

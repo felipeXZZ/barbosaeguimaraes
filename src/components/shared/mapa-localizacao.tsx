@@ -16,7 +16,7 @@ const URL_EXTERNA = `https://www.google.com/maps/search/?api=1&query=${CONSULTA}
 /**
  * Mapa carregado só depois do clique do usuário.
  * Carregar o iframe do Google automaticamente enviaria dados do visitante a
- * terceiro sem consentimento — evitamos isso e o banner de cookies junto.
+ * terceiro sem consentimento. Evitamos isso e o banner de cookies junto.
  */
 export function MapaLocalizacao({ className }: { className?: string }) {
   const [carregado, setCarregado] = React.useState(false);
@@ -41,7 +41,7 @@ export function MapaLocalizacao({ className }: { className?: string }) {
           <MapPin aria-hidden className="size-6 text-dourado-700" />
           <span aria-hidden className="filete" />
           <p className="max-w-[38ch] text-[0.9375rem] text-grafite-900">
-            {site.endereco.logradouro} — {site.endereco.bairro},{" "}
+            {site.endereco.logradouro}, {site.endereco.bairro},{" "}
             {site.endereco.cidade}/{site.endereco.uf}
           </p>
           <p className="max-w-[42ch] text-[0.8125rem] text-grafite-600">

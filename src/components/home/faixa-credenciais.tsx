@@ -14,7 +14,7 @@ interface Credencial {
 
 /**
  * Fatos verificáveis. Nenhuma métrica de resultado, valor recuperado ou
- * comparação com outros escritórios — vedado pelo Provimento 205/2021.
+ * comparação com outros escritórios, vedado pelo Provimento 205/2021.
  */
 export function FaixaCredenciais() {
   const credenciais: Credencial[] = [

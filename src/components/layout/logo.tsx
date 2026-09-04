@@ -10,7 +10,7 @@ const ALTURA = 109;
 /**
  * Assinatura do escritório. Duas versões da mesma arte: a clara é o arquivo
  * original (traço branco) e a escura é a mesma silhueta pintada em bordô,
- * gerada a partir do canal alfa — nunca aplicar filtro CSS para inverter.
+ * gerada a partir do canal alfa. Nunca aplicar filtro CSS para inverter.
  */
 export function Logo({
   variante = "claro",

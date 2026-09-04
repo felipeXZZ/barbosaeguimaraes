@@ -138,8 +138,8 @@ export default function PaginaPolitica() {
             <p>
               Independentemente da LGPD, todas as informações confiadas ao
               escritório estão protegidas pelo sigilo profissional do advogado,
-              previsto no artigo 34, inciso VII, da Lei nº 8.906/1994 — o
-              Estatuto da Advocacia e da OAB — e no Código de Ética e Disciplina
+              previsto no artigo 34, inciso VII, da Lei nº 8.906/1994 (o
+              Estatuto da Advocacia e da OAB) e no Código de Ética e Disciplina
               da profissão.
             </p>
             <p>

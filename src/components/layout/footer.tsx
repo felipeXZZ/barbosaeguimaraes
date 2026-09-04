@@ -30,7 +30,7 @@ export function Footer() {
               <span>
                 {site.endereco.logradouro}
                 <br />
-                {site.endereco.bairro} — {site.endereco.cidade}/
+                {site.endereco.bairro}, {site.endereco.cidade}/
                 {site.endereco.uf}
                 <br />
                 CEP {site.endereco.cep}
@@ -116,7 +116,7 @@ export function Footer() {
         <div className="flex flex-col gap-6 py-8 lg:flex-row lg:items-start lg:justify-between">
           <div className="text-[0.8125rem] leading-relaxed text-areia-200">
             <p>
-              {site.razaoSocial} — CNPJ {site.cnpj}
+              {site.razaoSocial}, CNPJ {site.cnpj}
             </p>
             <p>
               Sociedade de advogados inscrita na {site.oab}

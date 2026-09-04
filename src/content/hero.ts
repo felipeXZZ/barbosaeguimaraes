@@ -2,7 +2,7 @@ import type { SlideHero } from "@/types/content";
 
 /**
  * Imagens que se alternam no topo da home. A ordem aqui é a ordem de exibição;
- * para acrescentar uma imagem basta somar um item — o carrossel se ajusta.
+ * para acrescentar uma imagem basta somar um item e o carrossel se ajusta.
  */
 export const slidesHero: SlideHero[] = [
   {

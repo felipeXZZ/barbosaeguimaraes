@@ -1,6 +1,6 @@
 /**
  * Dados institucionais do escritório.
- * Fonte única de verdade — nada de telefone ou endereço repetido em componente.
+ * Fonte única de verdade: nada de telefone ou endereço repetido em componente.
  */
 
 export const ANO_FUNDACAO = 1979;
@@ -33,7 +33,7 @@ export const site = {
   },
 
   contato: {
-    /** Formato E.164, sem sinais — usado em tel: e wa.me */
+    /** Formato E.164, sem sinais, usado em tel: e wa.me */
     telefoneE164: "+5511976373255",
     telefoneDigitos: "5511976373255",
     telefoneFormatado: "(11) 97637-3255",
@@ -61,6 +61,6 @@ export const site = {
   },
 } as const;
 
-export const enderecoLinhaUnica = `${site.endereco.logradouro} — ${site.endereco.bairro}, ${site.endereco.cidade}/${site.endereco.uf}, ${site.endereco.cep}`;
+export const enderecoLinhaUnica = `${site.endereco.logradouro}, ${site.endereco.bairro}, ${site.endereco.cidade}/${site.endereco.uf}, ${site.endereco.cep}`;
 
 export { MENSAGEM_PADRAO as MENSAGEM_WHATSAPP_PADRAO } from "@/content/mensagens-whatsapp";

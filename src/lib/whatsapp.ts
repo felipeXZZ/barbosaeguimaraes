@@ -2,7 +2,7 @@ import { MENSAGEM_WHATSAPP_PADRAO, site } from "@/content/site";
 
 /**
  * Monta o link do WhatsApp com mensagem pré-preenchida.
- * A mensagem é contextual por página — ver `mensagemWhatsApp` em areas.ts.
+ * A mensagem é contextual por página. Ver `mensagemWhatsApp` em areas.ts.
  */
 export function linkWhatsApp(mensagem: string = MENSAGEM_WHATSAPP_PADRAO): string {
   return `https://wa.me/${site.contato.telefoneDigitos}?text=${encodeURIComponent(mensagem)}`;

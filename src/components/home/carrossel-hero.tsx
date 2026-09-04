@@ -13,7 +13,7 @@ const LIMIAR_ARRASTO = 48;
 /**
  * Carrossel do topo da home. Passa sozinho, no arrasto, pelos pontos ou pelas
  * setas do teclado. A troca automática para quando o visitante interage, quando
- * a aba sai de foco ou quando o sistema pede menos animação — imagem que se
+ * a aba sai de foco ou quando o sistema pede menos animação. Imagem que se
  * mexe sem controle atrapalha a leitura do título ao lado.
  */
 export function CarrosselHero() {

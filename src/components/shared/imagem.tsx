@@ -43,6 +43,11 @@ interface ImagemProps {
   blur?: boolean;
   /** Padrão: cor original. "pb" e "bordo" só onde houver texto sobreposto. */
   tratamento?: TratamentoImagem;
+  /**
+   * "contain" para artes que precisam aparecer inteiras, como o brasao.
+   * Nesse caso defina o fundo e o respiro pelo className do contêiner.
+   */
+  ajuste?: "cover" | "contain";
   /** Texto exibido no placeholder enquanto a imagem real não existe. */
   legenda?: string;
   /** Escurece a imagem para garantir contraste de texto sobreposto. */
@@ -51,7 +56,7 @@ interface ImagemProps {
 
 /**
  * Imagem do site. Enquanto o arquivo não existir em /public, exibe um
- * placeholder tratado no padrão visual do escritório — nunca um retângulo
+ * placeholder tratado no padrão visual do escritório. Nunca um retângulo
  * colorido vazio, que é justamente o defeito do site antigo.
  */
 export function Imagem({
@@ -62,6 +67,7 @@ export function Imagem({
   priority = false,
   blur = false,
   tratamento = "nenhum",
+  ajuste = "cover",
   legenda,
   overlayForte = false,
 }: ImagemProps) {
@@ -92,7 +98,7 @@ export function Imagem({
               ? ({ placeholder: "blur", blurDataURL: BLUR_BORDO } as const)
               : {})}
             className={cn(
-              "object-cover",
+              ajuste === "contain" ? "object-contain" : "object-cover",
               tratamento !== "nenhum" && "grayscale",
             )}
           />

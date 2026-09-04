@@ -13,7 +13,7 @@ import { totalAreas } from "@/content/areas";
 import { anosDeAtuacao, site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "O escritório",
+  title: "Sobre",
   description:
     "Barbosa e Guimarães Advogados Associados: fundado em 1979, com sede na Praça João Mendes, no centro de São Paulo. Conheça a história, a filosofia de trabalho e a missão do escritório.",
   alternates: { canonical: "/sobre" },
@@ -52,10 +52,10 @@ export default function PaginaSobre() {
   return (
     <>
       <CabecalhoPagina
-        sobrancelha="O escritório"
+        sobrancelha="Sobre"
         titulo={`Advocacia construída ao longo de ${anos} anos`}
         descricao="Fundado em 1979, o Barbosa e Guimarães Advogados Associados presta serviços jurídicos a pessoas físicas e empresas, com sede no centro de São Paulo e parcerias em todo o território nacional."
-        migalhas={[{ rotulo: "O escritório" }]}
+        migalhas={[{ rotulo: "Sobre" }]}
       />
 
       {/* Nossa história */}
@@ -86,7 +86,7 @@ export default function PaginaSobre() {
                 </p>
                 <p>
                   A sede permanece no centro de São Paulo, na Praça Dr. João
-                  Mendes, ao lado do Fórum João Mendes Júnior — proximidade que
+                  Mendes, ao lado do Fórum João Mendes Júnior, proximidade que
                   facilita o acompanhamento presencial de processos e o
                   atendimento a clientes que precisam comparecer a audiências.
                 </p>
@@ -95,11 +95,11 @@ export default function PaginaSobre() {
 
             <Revelar atraso={0.1} className="lg:col-span-5">
               <Imagem
-                src="/images/hero/escritorio-sede.jpg"
-                alt="Sede do escritório Barbosa e Guimarães, na Praça Dr. João Mendes, centro de São Paulo"
-                legenda="Fachada ou interior da sede, na Praça João Mendes"
+                src="/images/hero/brasao.png"
+                alt="Brasão do escritório Barbosa e Guimarães Advogados Associados"
                 sizes="(min-width: 1024px) 40vw, 100vw"
-                className="aspect-[4/5] w-full"
+                ajuste="contain"
+                className="aspect-[4/3] w-full bg-areia-50 p-8 sm:p-12"
               />
             </Revelar>
           </div>
@@ -178,7 +178,7 @@ export default function PaginaSobre() {
               <p>
                 A relação com o cliente se apoia em transparência sobre o que
                 está sendo feito, sobre os prazos envolvidos e sobre os riscos
-                de cada caminho possível — informação honesta, sem promessa de
+                de cada caminho possível: informação honesta, sem promessa de
                 resultado.
               </p>
             </div>

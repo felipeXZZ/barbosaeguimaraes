@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 import { anosDeAtuacao, site } from "@/content/site";
 
-export const alt = `${site.nome} — advocacia em São Paulo desde ${site.fundacao}`;
+export const alt = `${site.nome}: advocacia em São Paulo desde ${site.fundacao}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -73,7 +73,7 @@ export default function OpenGraphImage() {
           }}
         >
           <div style={{ display: "flex" }}>
-            {`${site.endereco.logradouro} — ${site.endereco.bairro}, São Paulo`}
+            {`${site.endereco.logradouro}, ${site.endereco.bairro}, São Paulo`}
           </div>
           <div style={{ display: "flex" }}>10 áreas do direito</div>
         </div>
