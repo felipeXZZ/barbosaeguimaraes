@@ -32,7 +32,7 @@ export function FaixaCredenciais() {
     },
     {
       icone: MapPin,
-      destaque: "Sé",
+      destaque: "Praça João Mendes",
       rotulo: "centro de São Paulo",
       detalhe: site.endereco.referencia,
     },
@@ -58,7 +58,11 @@ export function FaixaCredenciais() {
             >
               <item.icone aria-hidden className="size-5 text-dourado-700" />
               <p className="flex flex-wrap items-baseline gap-x-2">
-                <span className="font-serif text-[2rem] leading-none font-semibold text-bordo-800">
+                <span
+                  className={`font-serif leading-none font-semibold text-bordo-800 ${
+                    item.destaque.length > 8 ? "text-[1.375rem]" : "text-[2rem]"
+                  }`}
+                >
                   {item.destaque}
                 </span>
                 <span className="text-[0.9375rem] text-grafite-900">
