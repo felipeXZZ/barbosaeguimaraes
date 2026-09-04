@@ -1,0 +1,264 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* O site não tem modo escuro. A variante fica presa a uma classe .dark que
+   nunca é aplicada, para que utilitários dark: herdados do shadcn não
+   disparem por prefers-color-scheme. */
+@custom-variant dark (&:is(.dark *));
+
+/* =========================================================================
+   Barbosa e Guimarães Advogados Associados — Design Tokens
+   Todos os pares texto/fundo em uso foram medidos e passam WCAG AA.
+   O valor entre parênteses é a razão de contraste calculada.
+   ========================================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* Bordô — herança institucional */
+  --bordo-900: #4a0e11; /* header, footer, overlay do hero */
+  --bordo-800: #6b1216; /* blocos escuros secundários */
+  --bordo-700: #8c1a1f; /* cor institucional principal, botões */
+  --bordo-600: #a8232a; /* hover de botão */
+
+  /* Dourado — sóbrio, substitui o amarelo berrante do site antigo */
+  --dourado-500: #c9a227; /* filetes e ícones SOBRE BORDÔ (6.37:1) */
+  --dourado-400: #d9bc5c; /* texto curto sobre bordô (8.29:1) */
+  --dourado-700: #7a6212; /* texto/filete sobre fundo claro (5.53:1) */
+
+  /* Areia — fundos claros */
+  --areia-50: #faf8f5; /* fundo padrão das páginas */
+  --areia-100: #f1ece4; /* superfícies e cards */
+  --areia-200: #e3dacb; /* bordas decorativas (não textuais) */
+
+  /* Grafite — texto */
+  --grafite-900: #1a1a1a; /* texto principal sobre claro (16.42:1) */
+  --grafite-600: #4a4a4a; /* texto secundário sobre claro (8.36:1) */
+  --grafite-400: #8f8f8f; /* borda de controle de formulário (3.05:1) */
+
+  /* Verde do WhatsApp, calibrado para acessibilidade.
+     O verde de marca (#25D366) daria apenas 1.98:1 com o glifo branco e
+     1.87:1 contra o fundo areia — invisível. Este mantém a leitura de
+     "WhatsApp" com 4.57:1 no glifo e 4.32:1 contra o fundo claro. */
+  --verde-whatsapp: #12874a;
+  --verde-whatsapp-escuro: #0b8043;
+
+  /* Semânticos */
+  --erro: #9b1c1c;
+  --sucesso: #14532d;
+
+  /* Raio máximo 4px: escritório de advocacia não usa canto de app. */
+  --radius: 4px;
+
+  /* ---- Mapeamento dos tokens semânticos do shadcn/ui para a marca ---- */
+  --background: var(--areia-50);
+  --foreground: var(--grafite-900);
+  --card: #ffffff;
+  --card-foreground: var(--grafite-900);
+  --popover: var(--areia-50);
+  --popover-foreground: var(--grafite-900);
+  --primary: var(--bordo-700);
+  --primary-foreground: #ffffff; /* 9.20:1 */
+  --secondary: var(--areia-100);
+  --secondary-foreground: var(--grafite-900);
+  --muted: var(--areia-100);
+  --muted-foreground: var(--grafite-600); /* 7.54:1 */
+  --accent: var(--areia-100);
+  --accent-foreground: var(--bordo-800);
+  --destructive: var(--erro);
+  --destructive-foreground: #ffffff;
+  --border: var(--areia-200);
+  --input: var(--grafite-400);
+  --ring: var(--dourado-700);
+}
+
+@theme inline {
+  --color-bordo-900: var(--bordo-900);
+  --color-bordo-800: var(--bordo-800);
+  --color-bordo-700: var(--bordo-700);
+  --color-bordo-600: var(--bordo-600);
+  --color-dourado-500: var(--dourado-500);
+  --color-dourado-400: var(--dourado-400);
+  --color-dourado-700: var(--dourado-700);
+  --color-areia-50: var(--areia-50);
+  --color-areia-100: var(--areia-100);
+  --color-areia-200: var(--areia-200);
+  --color-grafite-900: var(--grafite-900);
+  --color-grafite-600: var(--grafite-600);
+  --color-grafite-400: var(--grafite-400);
+  --color-verde-whatsapp: var(--verde-whatsapp);
+  --color-verde-whatsapp-escuro: var(--verde-whatsapp-escuro);
+  --color-erro: var(--erro);
+  --color-sucesso: var(--sucesso);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-playfair), Georgia, serif;
+
+  --radius-xs: 2px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-xl: 4px;
+  --radius-2xl: 4px;
+
+  /* Espaçamento vertical de seção: py-16 no mobile, py-24 no desktop */
+  --spacing-secao: 4rem;
+  --spacing-secao-lg: 6rem;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--areia-50);
+    color: var(--grafite-900);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 17px;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  /* Nunca justificado: o site antigo criava rios de espaço em branco. */
+  p,
+  li {
+    text-align: left;
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--dourado-700);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Sobre fundo bordô o anel de foco precisa de contraste invertido */
+  .sobre-bordo :focus-visible {
+    outline-color: var(--dourado-400);
+  }
+
+  ::selection {
+    background-color: var(--bordo-700);
+    color: var(--areia-50);
+  }
+}
+
+@layer components {
+  /* Filete dourado de 1px: elemento gráfico recorrente de separação */
+  .filete {
+    display: block;
+    width: 3rem;
+    height: 1px;
+    background-color: var(--dourado-700);
+    border: 0;
+  }
+
+  .sobre-bordo .filete {
+    background-color: var(--dourado-500);
+  }
+
+  /* Rótulo curto acima dos títulos de seção */
+  .sobrancelha {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--dourado-700);
+  }
+
+  .sobre-bordo .sobrancelha {
+    color: var(--dourado-400);
+  }
+
+  /* Textura discreta para placeholders de imagem ainda não fornecidas */
+  .textura-placeholder {
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent,
+      transparent 7px,
+      color-mix(in srgb, var(--bordo-900) 6%, transparent) 7px,
+      color-mix(in srgb, var(--bordo-900) 6%, transparent) 8px
+    );
+  }
+
+  /* Versão escura: usada onde há texto claro sobreposto (hero, blocos bordô) */
+  .textura-placeholder-escura {
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent,
+      transparent 7px,
+      color-mix(in srgb, var(--dourado-500) 10%, transparent) 7px,
+      color-mix(in srgb, var(--dourado-500) 10%, transparent) 8px
+    );
+  }
+}
+
+@media print {
+  .nao-imprimir {
+    display: none !important;
+  }
+}
