@@ -1,45 +1,41 @@
+import Image from "next/image";
+
+import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
 
+/** Dimensões da arte já recortada em public/images/logo-*.png. */
+const LARGURA = 633;
+const ALTURA = 109;
+
 /**
- * Marca tipográfica do escritório. Enquanto não houver arquivo de logotipo
- * definitivo, a assinatura é construída em tipografia — nunca uma imagem
- * quebrada. Para substituir por um SVG, troque apenas o conteúdo abaixo.
+ * Assinatura do escritório. Duas versões da mesma arte: a clara é o arquivo
+ * original (traço branco) e a escura é a mesma silhueta pintada em bordô,
+ * gerada a partir do canal alfa — nunca aplicar filtro CSS para inverter.
  */
 export function Logo({
   variante = "claro",
   className,
+  prioridade = false,
+  alt = site.nome,
 }: {
   /** "claro" = para fundo bordô. "escuro" = para fundo areia. */
   variante?: "claro" | "escuro";
   className?: string;
+  /** Marque na instância acima da dobra (o header) para evitar troca tardia. */
+  prioridade?: boolean;
+  /** Passe "" quando o link ao redor já tiver rótulo acessível. */
+  alt?: string;
 }) {
-  const sobreEscuro = variante === "claro";
-
   return (
-    <span className={cn("flex flex-col leading-none", className)}>
-      <span
-        className={cn(
-          "font-serif text-[1.0625rem] font-semibold tracking-[-0.01em] sm:text-[1.1875rem]",
-          sobreEscuro ? "text-areia-50" : "text-bordo-900",
-        )}
-      >
-        Barbosa <span className="font-normal italic">e</span> Guimarães
-      </span>
-      <span
-        aria-hidden
-        className={cn(
-          "mt-1.5 h-px w-8",
-          sobreEscuro ? "bg-dourado-500" : "bg-dourado-700",
-        )}
-      />
-      <span
-        className={cn(
-          "mt-1.5 text-[0.5625rem] font-medium tracking-[0.22em] uppercase sm:text-[0.625rem]",
-          sobreEscuro ? "text-dourado-400" : "text-dourado-700",
-        )}
-      >
-        Advogados Associados
-      </span>
-    </span>
+    <Image
+      src={variante === "claro" ? "/images/logo-claro.png" : "/images/logo-escuro.png"}
+      alt={alt}
+      width={LARGURA}
+      height={ALTURA}
+      priority={prioridade}
+      quality={90}
+      sizes="232px"
+      className={cn("h-8 w-auto sm:h-9 lg:h-10", className)}
+    />
   );
 }

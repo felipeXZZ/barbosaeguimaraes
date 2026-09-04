@@ -119,9 +119,9 @@ export default async function PaginaArea({ params }: Props) {
               <Imagem
                 src={area.imagem}
                 alt={area.imagemAlt}
-                legenda={`Imagem da área de ${area.nome}, proporção 4:5`}
+                legenda={`Imagem da área de ${area.nome}, proporção 3:2`}
                 sizes="(min-width: 1024px) 40vw, 100vw"
-                className="aspect-[4/5] w-full"
+                className="aspect-[3/2] w-full"
               />
             </Revelar>
           </div>

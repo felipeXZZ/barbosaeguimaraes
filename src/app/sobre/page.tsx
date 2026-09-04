@@ -15,7 +15,7 @@ import { anosDeAtuacao, site } from "@/content/site";
 export const metadata: Metadata = {
   title: "O escritório",
   description:
-    "Barbosa e Guimarães Advogados Associados: fundado em 1999, com sede na Praça João Mendes, no centro de São Paulo. Conheça a história, a filosofia de trabalho e a missão do escritório.",
+    "Barbosa e Guimarães Advogados Associados: fundado em 1979, com sede na Praça João Mendes, no centro de São Paulo. Conheça a história, a filosofia de trabalho e a missão do escritório.",
   alternates: { canonical: "/sobre" },
 };
 
@@ -54,7 +54,7 @@ export default function PaginaSobre() {
       <CabecalhoPagina
         sobrancelha="O escritório"
         titulo={`Advocacia construída ao longo de ${anos} anos`}
-        descricao="Fundado em 1999, o Barbosa e Guimarães Advogados Associados presta serviços jurídicos a pessoas físicas e empresas, com sede no centro de São Paulo e parcerias em todo o território nacional."
+        descricao="Fundado em 1979, o Barbosa e Guimarães Advogados Associados presta serviços jurídicos a pessoas físicas e empresas, com sede no centro de São Paulo e parcerias em todo o território nacional."
         migalhas={[{ rotulo: "O escritório" }]}
       />
 

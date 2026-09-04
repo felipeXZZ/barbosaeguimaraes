@@ -1,3 +1,5 @@
+import { Award, GraduationCap, Landmark, Scale, Users } from "lucide-react";
+
 import type { MembroEquipe } from "@/types/content";
 
 /**
@@ -22,6 +24,35 @@ export const equipe: MembroEquipe[] = [
       "Advogado, jurisconsulto e especialista em Direito Penal, pós-graduado pela Pontifícia Universidade Católica. Construiu a carreira atuando em diversos ramos do direito e participando do debate institucional da advocacia.",
       "Convidado pela Associação Comercial de São Paulo, exerceu três mandatos como Conselheiro Distrital. Na Ordem dos Advogados do Brasil, foi Conselheiro Representante na Fundação do Bem Estar do Menor, Secretário e Vice-Presidente da Caixa dos Advogados do Estado de São Paulo, membro das Comissões de Prerrogativas, de Estágio e Exame de Ordem e de Direitos Humanos, e Secretário Geral.",
       "Sócio efetivo do Instituto dos Advogados Brasileiros, participou da criação da Federação dos Advogados do Estado de São Paulo, onde exerce a presidência. Foi Presidente da Carteira de Previdência dos Advogados do Estado de São Paulo e Presidente da Comissão de Direito Bancário da OAB Federal, e foi eleito Conselheiro Federal da Ordem dos Advogados do Brasil.",
+    ],
+    resumo:
+      "Advogado, jurisconsulto e especialista em Direito Penal. Construiu a carreira atuando em diversos ramos do direito e participando do debate institucional da advocacia.",
+    destaques: [
+      {
+        icone: Award,
+        rotulo: "Ordem dos Advogados do Brasil",
+        detalhe: "Conselheiro Federal",
+      },
+      {
+        icone: Users,
+        rotulo: "FADESP",
+        detalhe: "Presidente da Federação dos Advogados do Estado de São Paulo",
+      },
+      {
+        icone: Landmark,
+        rotulo: "Instituto dos Advogados Brasileiros",
+        detalhe: "Sócio efetivo",
+      },
+      {
+        icone: Scale,
+        rotulo: "Comissão de Direito Bancário da OAB Federal",
+        detalhe: "Presidente",
+      },
+      {
+        icone: GraduationCap,
+        rotulo: "Pontifícia Universidade Católica",
+        detalhe: "Pós-graduação",
+      },
     ],
     foto: "/images/equipe/raimundo-hermes-barbosa.jpg",
     fotoAlt:

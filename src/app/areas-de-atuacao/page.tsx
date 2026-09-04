@@ -27,9 +27,9 @@ export default function PaginaAreas() {
 
       <section className="py-16 lg:py-24">
         <Container>
-          <ul className="grid gap-px bg-areia-200 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {areas.map((area, indice) => (
-              <li key={area.slug} className="bg-areia-50">
+              <li key={area.slug} className="border border-areia-200 bg-areia-50">
                 <Revelar atraso={(indice % 3) * 0.06} className="h-full">
                   <Link
                     href={`/areas-de-atuacao/${area.slug}`}

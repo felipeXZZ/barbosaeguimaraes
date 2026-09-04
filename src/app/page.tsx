@@ -12,7 +12,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: `${site.nome} | Advocacia em São Paulo desde ${site.fundacao}`,
   description:
-    "Escritório de advocacia no centro de São Paulo, atuante desde 1999 em dez áreas do direito, com atendimento em todo o território nacional. Fale com o escritório.",
+    "Escritório de advocacia no centro de São Paulo, atuante desde 1979 em dez áreas do direito, com atendimento em todo o território nacional. Fale com o escritório.",
   alternates: { canonical: "/" },
 };
 

@@ -14,14 +14,39 @@ import { registrarEvento } from "@/lib/analytics";
 import { linkWhatsApp } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 
+/** A partir daqui a barra recolhe ao descer e reaparece ao subir. */
+const LIMITE_OCULTAR = 96;
+/** Ignora microvariações de rolagem (trackpad, inércia) que fariam a barra piscar. */
+const DELTA_MINIMO = 6;
+
 export function Header() {
   const pathname = usePathname();
   const [rolou, setRolou] = React.useState(false);
+  const [oculto, setOculto] = React.useState(false);
   const mensagem = mensagemDaRota(pathname);
 
   React.useEffect(() => {
-    const aoRolar = () => setRolou(window.scrollY > 8);
-    aoRolar();
+    let ultimoY = window.scrollY;
+    let agendado = false;
+
+    const avaliar = () => {
+      agendado = false;
+      const y = Math.max(window.scrollY, 0);
+      setRolou(y > 8);
+
+      const delta = y - ultimoY;
+      if (Math.abs(delta) < DELTA_MINIMO) return;
+      setOculto(delta > 0 && y > LIMITE_OCULTAR);
+      ultimoY = y;
+    };
+
+    const aoRolar = () => {
+      if (agendado) return;
+      agendado = true;
+      window.requestAnimationFrame(avaliar);
+    };
+
+    avaliar();
     window.addEventListener("scroll", aoRolar, { passive: true });
     return () => window.removeEventListener("scroll", aoRolar);
   }, []);
@@ -29,11 +54,14 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sobre-bordo sticky top-0 z-50 transition-[background-color,box-shadow] duration-300",
+        "sobre-bordo sticky top-0 z-50 transition-[background-color,box-shadow,transform] duration-300 motion-reduce:transition-none",
+        oculto ? "-translate-y-full" : "translate-y-0",
         rolou
           ? "bg-bordo-900/90 shadow-[0_1px_0_0_var(--dourado-500)] backdrop-blur-md supports-[backdrop-filter]:bg-bordo-900/85"
           : "bg-bordo-900",
       )}
+      /* Evita que o teclado leve o foco para uma barra fora da tela. */
+      onFocus={() => setOculto(false)}
     >
       <Container>
         <div className="flex h-16 items-center justify-between gap-4 lg:h-20">
@@ -42,7 +70,7 @@ export function Header() {
             aria-label="Barbosa e Guimarães Advogados Associados — página inicial"
             className="shrink-0"
           >
-            <Logo />
+            <Logo prioridade alt="" />
           </Link>
 
           <nav

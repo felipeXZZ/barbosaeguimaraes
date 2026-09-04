@@ -5,8 +5,8 @@ existir, o site exibe automaticamente um placeholder tratado no padrão visual
 (fundo areia, filete dourado e o caminho esperado) — nunca um retângulo vazio.
 
 Formato recomendado: JPG ou WebP, qualidade 80, sem texto embutido na imagem.
-Todas as fotos são exibidas em preto e branco com leve overlay bordô, então
-não é necessário tratar a cor antes de subir.
+As fotos são exibidas em cor original. Suba já tratadas, com luz e recorte
+coerentes entre si.
 
 ## hero/
 | Arquivo | Uso | Proporção sugerida |
@@ -30,7 +30,7 @@ Proporção 3:4, mínimo 900x1200.
 | `walter-brito.jpg` | Walter Brito |
 
 ## areas/
-Uma imagem por área, paisagem, proporção 16:9, mínimo 1200x675.
+Uma imagem por área, paisagem, proporção 3:2, mínimo 1200x800.
 Nomes iguais aos slugs:
 
 `direito-bancario-e-financeiro.jpg`, `direito-civel.jpg`,

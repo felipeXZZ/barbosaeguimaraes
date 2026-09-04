@@ -26,7 +26,7 @@ export const areas: Area[] = [
     resumoCurto:
       "Contratos financeiros, relação banco-cliente e conformidade regulatória.",
     metaDescricao:
-      "Atuação em Direito Bancário e Financeiro no centro de São Paulo: contratos, revisão de cláusulas, relação banco-cliente e conformidade regulatória. Escritório atuante desde 1999.",
+      "Atuação em Direito Bancário e Financeiro no centro de São Paulo: contratos, revisão de cláusulas, relação banco-cliente e conformidade regulatória. Escritório atuante desde 1979.",
     descricao: [
       "O escritório acompanha pessoas físicas e empresas em questões do sistema financeiro. Analisamos contratos de crédito, financiamento, arrendamento mercantil e cédulas de crédito, verificamos encargos e cláusulas e orientamos sobre os caminhos administrativos e judiciais disponíveis em cada situação.",
       "Também atendemos instituições e empresas que precisam adequar operações às normas do Banco Central e do Conselho Monetário Nacional, com apoio na redação de instrumentos e no acompanhamento de litígios do setor.",
@@ -57,7 +57,7 @@ export const areas: Area[] = [
     resumoCurto:
       "Direitos individuais e patrimoniais, contratos e responsabilidade civil.",
     metaDescricao:
-      "Advocacia cível no centro de São Paulo: contratos, responsabilidade civil, direitos patrimoniais e disputas judiciais e extrajudiciais. Escritório atuante desde 1999.",
+      "Advocacia cível no centro de São Paulo: contratos, responsabilidade civil, direitos patrimoniais e disputas judiciais e extrajudiciais. Escritório atuante desde 1979.",
     descricao: [
       "O Direito Cível organiza boa parte das relações do dia a dia: o que você contrata, o que possui e o que pode exigir de outra pessoa ou empresa. O escritório atua na redação e na interpretação de contratos, na cobrança de obrigações não cumpridas e na reparação de danos.",
       "Buscamos primeiro a solução extrajudicial, por acordo ou notificação, quando ela atende ao interesse do cliente. Quando o processo é necessário, conduzimos a causa em todas as instâncias.",

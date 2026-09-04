@@ -39,6 +39,14 @@ export interface Area {
   destaque?: boolean;
 }
 
+export interface DestaqueCredencial {
+  icone: LucideIcon;
+  /** Rótulo curto: a instituição ou o título. */
+  rotulo: string;
+  /** Complemento opcional: cargo ou vínculo exercido ali. */
+  detalhe?: string;
+}
+
 export interface MembroEquipe {
   slug: string;
   nome: string;
@@ -46,6 +54,14 @@ export interface MembroEquipe {
   credenciais: string[];
   /** Biografia em parágrafos curtos. Opcional: nem todo membro tem bio longa. */
   bio?: string[];
+  /** Uma linha, para a chamada da home. Resume a bio sem substituí-la. */
+  resumo?: string;
+  /**
+   * Recorte das credenciais para exibição em destaque, com ícone. Nada aqui
+   * pode ir além do que já consta na lista de credenciais — o Provimento
+   * 205/2021 admite qualificação verificável, não construção publicitária.
+   */
+  destaques?: DestaqueCredencial[];
   foto: string;
   fotoAlt: string;
   destaque?: boolean;
@@ -64,4 +80,16 @@ export interface Artigo {
   coverImageAlt: string;
   /** Corpo em Markdown simples; migra para MDX sem alteração de tipo. */
   content: string;
+}
+
+export interface SlideHero {
+  /** Arquivo em /public/images/hero/ */
+  src: string;
+  /** Alt real e descritivo. */
+  alt: string;
+  /**
+   * "contain" para artes que já trazem fundo próprio, como o brasão;
+   * "cover" para fotografia, que deve preencher o quadro.
+   */
+  ajuste: "contain" | "cover";
 }

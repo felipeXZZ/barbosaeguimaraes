@@ -38,7 +38,7 @@ export function GradeAreas() {
 
       <Container className="mt-12">
         <ul
-          className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:gap-px md:overflow-visible md:bg-areia-200 md:px-0 md:pb-0 lg:grid-cols-3"
+          className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3"
           role="list"
         >
           {areas.map((area) => (
@@ -48,7 +48,7 @@ export function GradeAreas() {
             >
               <Link
                 href={`/areas-de-atuacao/${area.slug}`}
-                className="group flex h-full flex-col gap-4 border border-areia-200 bg-areia-50 p-6 transition-colors hover:bg-areia-100 md:border-0 lg:p-8"
+                className="group flex h-full flex-col gap-4 border border-areia-200 bg-areia-50 p-6 transition-colors hover:bg-areia-100 lg:p-8"
               >
                 <area.icone
                   aria-hidden

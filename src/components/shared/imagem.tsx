@@ -41,6 +41,7 @@ interface ImagemProps {
   priority?: boolean;
   /** Placeholder desfocado em bordô, evita flash branco no LCP. */
   blur?: boolean;
+  /** Padrão: cor original. "pb" e "bordo" só onde houver texto sobreposto. */
   tratamento?: TratamentoImagem;
   /** Texto exibido no placeholder enquanto a imagem real não existe. */
   legenda?: string;
@@ -60,7 +61,7 @@ export function Imagem({
   sizes,
   priority = false,
   blur = false,
-  tratamento = "bordo",
+  tratamento = "nenhum",
   legenda,
   overlayForte = false,
 }: ImagemProps) {
@@ -137,24 +138,20 @@ export function PlaceholderImagem({
 }) {
   const escuro = tema === "escuro";
 
+  /*
+   * O tema escuro só aparece atrás de texto sobreposto, como no topo da home.
+   * Ali a imagem é decorativa: enquanto o arquivo não existe, fica apenas o
+   * fundo texturizado. Legenda e caminho seriam ruído por cima do conteúdo.
+   */
   if (escuro) {
     return (
       <div
+        aria-hidden
         className={cn(
-          "textura-placeholder-escura absolute inset-0 flex flex-col justify-end bg-bordo-900 p-5",
+          "textura-placeholder-escura absolute inset-0 bg-bordo-900",
           className,
         )}
-        role="img"
-        aria-label={legenda}
-      >
-        <div className="flex items-center gap-3 self-end text-right">
-          <span className="hidden max-w-[30ch] text-[0.6875rem] leading-snug text-areia-200/80 sm:block">
-            {legenda}
-            {caminho ? <span className="block font-mono">{caminho}</span> : null}
-          </span>
-          <ImageIcon aria-hidden className="size-4 shrink-0 text-dourado-500" />
-        </div>
-      </div>
+      />
     );
   }
 

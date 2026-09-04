@@ -3,7 +3,7 @@
  * Fonte única de verdade — nada de telefone ou endereço repetido em componente.
  */
 
-export const ANO_FUNDACAO = 1999;
+export const ANO_FUNDACAO = 1979;
 
 /** Calculado em tempo de renderização. Nunca hardcode o número de anos. */
 export function anosDeAtuacao(): number {
@@ -17,7 +17,7 @@ export const site = {
   cnpj: "08.864.352/0001-0",
   fundacao: ANO_FUNDACAO,
   descricao:
-    "Escritório de advocacia com sede no centro de São Paulo, atuando desde 1999 em dez áreas do direito, com atendimento em todo o território nacional.",
+    "Escritório de advocacia com sede no centro de São Paulo, atuando desde 1979 em dez áreas do direito, com atendimento em todo o território nacional.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.barbosaeguimaraes.adv.br",
 
   endereco: {
