@@ -3,8 +3,7 @@ import Link from "next/link";
 
 import { Container } from "@/components/shared/container";
 import { Imagem } from "@/components/shared/imagem";
-import { Revelar } from "@/components/shared/revelar";
-import { Filete } from "@/components/shared/section-heading";
+import { FileteRevelado, Revelar } from "@/components/shared/revelar";
 import { socioFundador } from "@/content/equipe";
 
 /**
@@ -22,7 +21,7 @@ export function SocioFundador() {
     >
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-          <Revelar className="lg:col-span-5">
+          <Revelar direcao="esquerda" className="lg:col-span-5">
             <div className="relative">
               {/* Mesmo filete deslocado do carrossel do topo, para dar unidade. */}
               <span
@@ -39,9 +38,9 @@ export function SocioFundador() {
             </div>
           </Revelar>
 
-          <Revelar atraso={0.1} className="lg:col-span-7">
+          <Revelar direcao="direita" atraso={0.12} className="lg:col-span-7">
             <span className="sobrancelha">Sócio fundador</span>
-            <Filete className="mt-4" />
+            <FileteRevelado className="mt-4" />
 
             <h2
               id="fundador-titulo"

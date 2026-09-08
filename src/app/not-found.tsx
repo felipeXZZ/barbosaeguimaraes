@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Container } from "@/components/shared/container";
-import { Filete } from "@/components/shared/section-heading";
+import { FileteRevelado } from "@/components/shared/revelar";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function PaginaNaoEncontrada() {
     <Container className="py-24 lg:py-32">
       <div className="max-w-[46rem]">
         <span className="sobrancelha">Erro 404</span>
-        <Filete className="mt-4" />
+        <FileteRevelado className="mt-4" />
         <h1 className="mt-6 text-[2rem] sm:text-[2.5rem]">
           Esta página não foi encontrada
         </h1>

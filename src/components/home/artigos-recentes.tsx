@@ -3,7 +3,11 @@ import Link from "next/link";
 
 import { CardArtigo } from "@/components/shared/card-artigo";
 import { Container } from "@/components/shared/container";
-import { Revelar } from "@/components/shared/revelar";
+import {
+  Revelar,
+  RevelarGrupo,
+  RevelarItem,
+} from "@/components/shared/revelar";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { artigosRecentes } from "@/content/artigos";
 
@@ -36,15 +40,17 @@ export function ArtigosRecentes() {
           </div>
         </Revelar>
 
-        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {artigos.map((artigo, indice) => (
-            <li key={artigo.slug}>
-              <Revelar atraso={indice * 0.08} className="h-full">
-                <CardArtigo artigo={artigo} />
-              </Revelar>
-            </li>
+        <RevelarGrupo
+          as="ul"
+          intervalo={0.09}
+          className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {artigos.map((artigo) => (
+            <RevelarItem as="li" key={artigo.slug} className="h-full">
+              <CardArtigo artigo={artigo} />
+            </RevelarItem>
           ))}
-        </ul>
+        </RevelarGrupo>
 
         <Link
           href="/artigos"

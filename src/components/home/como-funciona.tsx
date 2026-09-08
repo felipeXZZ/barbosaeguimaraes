@@ -1,5 +1,9 @@
 import { Container } from "@/components/shared/container";
-import { Revelar } from "@/components/shared/revelar";
+import {
+  Revelar,
+  RevelarGrupo,
+  RevelarItem,
+} from "@/components/shared/revelar";
 import { SectionHeading } from "@/components/shared/section-heading";
 
 const passos = [
@@ -49,26 +53,36 @@ export function ComoFunciona() {
           />
         </Revelar>
 
-        <ol className="mt-12 grid gap-px bg-areia-200 sm:grid-cols-2 lg:grid-cols-4">
-          {passos.map((passo, indice) => (
-            <li key={passo.numero} className="bg-areia-50">
-              <Revelar atraso={indice * 0.08} className="h-full">
-                <div className="flex h-full flex-col gap-4 p-6 lg:p-8">
-                  <span className="font-serif text-[1.75rem] leading-none text-dourado-700">
-                    {passo.numero}
-                  </span>
-                  <span aria-hidden className="h-px w-8 bg-dourado-700" />
-                  <h3 className="font-serif text-[1.1875rem] text-bordo-900">
-                    {passo.titulo}
-                  </h3>
-                  <p className="text-[0.9375rem] text-grafite-600">
-                    {passo.texto}
-                  </p>
-                </div>
-              </Revelar>
-            </li>
+        <RevelarGrupo
+          as="ol"
+          intervalo={0.09}
+          className="mt-12 grid gap-px bg-areia-200 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {passos.map((passo) => (
+            <RevelarItem
+              as="li"
+              key={passo.numero}
+              className="group bg-areia-50"
+            >
+              <div className="flex h-full flex-col gap-4 p-6 transition-colors duration-300 group-hover:bg-areia-100 lg:p-8">
+                <span className="font-serif text-[1.75rem] leading-none text-dourado-700">
+                  {passo.numero}
+                </span>
+                {/* O fio se estende ao passar o mouse: o passo "avança". */}
+                <span
+                  aria-hidden
+                  className="h-px w-8 origin-left bg-dourado-700 transition-transform duration-500 ease-out group-hover:scale-x-[2] motion-reduce:group-hover:scale-x-100"
+                />
+                <h3 className="font-serif text-[1.1875rem] text-bordo-900">
+                  {passo.titulo}
+                </h3>
+                <p className="text-[0.9375rem] text-grafite-600">
+                  {passo.texto}
+                </p>
+              </div>
+            </RevelarItem>
           ))}
-        </ol>
+        </RevelarGrupo>
       </Container>
     </section>
   );

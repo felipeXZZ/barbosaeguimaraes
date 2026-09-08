@@ -7,7 +7,8 @@ import { Container } from "@/components/shared/container";
 import { CtaWhatsApp } from "@/components/shared/cta-whatsapp";
 import { Imagem } from "@/components/shared/imagem";
 import { Revelar } from "@/components/shared/revelar";
-import { Filete, SectionHeading } from "@/components/shared/section-heading";
+import { FileteRevelado } from "@/components/shared/revelar";
+import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
 import { totalAreas } from "@/content/areas";
 import { anosDeAtuacao, site } from "@/content/site";
@@ -162,7 +163,7 @@ export default function PaginaSobre() {
         <Container estreito>
           <Revelar>
             <span className="sobrancelha">Missão</span>
-            <Filete className="mt-4" />
+            <FileteRevelado className="mt-4" />
             <h2
               id="missao-titulo"
               className="mt-6 text-[1.75rem] sm:text-[2.125rem]"

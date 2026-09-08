@@ -17,7 +17,7 @@ export function CardArtigo({
   sizes?: string;
 }) {
   return (
-    <article className="group relative isolate flex h-full flex-col border border-areia-200 bg-areia-50 transition-colors hover:bg-areia-100">
+    <article className="cartao-interativo group relative isolate flex h-full flex-col border border-areia-200 bg-areia-50 hover:bg-areia-100">
       <Imagem
         src={artigo.coverImage}
         alt={artigo.coverImageAlt}
@@ -51,7 +51,7 @@ export function CardArtigo({
 
         <p className="text-[0.9375rem] text-grafite-600">{artigo.excerpt}</p>
 
-        <span className="mt-auto pt-3 text-[0.875rem] font-medium text-bordo-700 underline decoration-dourado-700 underline-offset-4">
+        <span className="mt-auto inline-flex items-center gap-2 pt-3 text-[0.875rem] font-medium text-bordo-700 underline decoration-dourado-700 underline-offset-4">
           Ler o artigo
         </span>
       </div>

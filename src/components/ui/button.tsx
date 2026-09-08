@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
  * sem gradiente. Todas as combinações de cor passam WCAG AA.
  */
 const buttonVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-[2px] text-[0.9375rem] font-medium leading-none whitespace-nowrap transition-colors duration-200 outline-none disabled:pointer-events-none disabled:opacity-60 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-[1.125em]",
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-[2px] text-[0.9375rem] font-medium leading-none whitespace-nowrap transition-[background-color,border-color,color,transform] duration-200 active:scale-[0.98] motion-reduce:active:scale-100 outline-none disabled:pointer-events-none disabled:opacity-60 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-[1.125em]",
   {
     variants: {
       variant: {

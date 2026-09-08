@@ -25,7 +25,7 @@ export function BotaoWhatsAppFlutuante() {
       onClick={() => registrarEvento("clique_whatsapp", { origem: "flutuante" })}
       aria-label="Falar com o escritório pelo WhatsApp"
       title="Falar com o escritório pelo WhatsApp"
-      className="nao-imprimir fixed right-4 bottom-4 z-40 inline-flex size-14 items-center justify-center rounded-full bg-verde-whatsapp text-white shadow-[0_2px_10px_rgba(26,26,26,0.35)] transition-colors duration-200 hover:bg-verde-whatsapp-escuro focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-bordo-900 sm:right-6 sm:bottom-6"
+      className="nao-imprimir fixed right-4 bottom-4 z-40 inline-flex size-14 items-center justify-center rounded-full bg-verde-whatsapp text-white shadow-[0_2px_10px_rgba(26,26,26,0.35)] surgir-flutuante transition-[background-color,transform] duration-200 hover:scale-105 hover:bg-verde-whatsapp-escuro active:scale-95 motion-reduce:hover:scale-100 motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-bordo-900 sm:right-6 sm:bottom-6"
     >
       <IconeWhatsApp className="size-7" />
     </a>

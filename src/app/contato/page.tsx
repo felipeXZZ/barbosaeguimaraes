@@ -7,7 +7,7 @@ import { Container } from "@/components/shared/container";
 import { FormularioContato } from "@/components/shared/formulario-contato";
 import { MapaLocalizacao } from "@/components/shared/mapa-localizacao";
 import { Revelar } from "@/components/shared/revelar";
-import { Filete } from "@/components/shared/section-heading";
+import { FileteRevelado } from "@/components/shared/revelar";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function PaginaContato() {
             {/* Dados */}
             <Revelar className="lg:col-span-5">
               <span className="sobrancelha">Canais diretos</span>
-              <Filete className="mt-4" />
+              <FileteRevelado className="mt-4" />
               <h2 className="mt-6 text-[1.75rem] sm:text-[2rem]">
                 Onde estamos e como falar
               </h2>

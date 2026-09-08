@@ -1,11 +1,7 @@
 import * as React from "react";
 
+import { FileteRevelado } from "@/components/shared/revelar";
 import { cn } from "@/lib/utils";
-
-/** Filete dourado de 1px: elemento gráfico recorrente de separação. */
-export function Filete({ className }: { className?: string }) {
-  return <span aria-hidden className={cn("filete", className)} />;
-}
 
 interface SectionHeadingProps {
   /** Rótulo curto em caixa alta acima do título */
@@ -52,7 +48,7 @@ export function SectionHeading({
             centralizado && "justify-center",
           )}
         >
-          <Filete className="w-8" />
+          <FileteRevelado className="w-8" />
           <span className="sobrancelha">{sobrancelha}</span>
         </div>
       ) : null}

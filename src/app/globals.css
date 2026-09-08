@@ -150,8 +150,10 @@
     ::before,
     ::after {
       animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
+      transition-delay: 0ms !important;
     }
   }
 
@@ -235,6 +237,94 @@
     color: var(--dourado-400);
   }
 
+  /* =======================================================================
+     Entrada em cadeia da abertura e dos cabeçalhos de página.
+
+     É CSS puro de propósito: a animação começa no primeiro quadro pintado,
+     sem esperar hidratação, e quem está sem JavaScript vê a página inteira.
+     Com framer-motion o título nasceria em opacity 0 no HTML do servidor, e
+     um erro de script deixaria a tela vazia. O escalonamento vem das classes
+     .atraso-*, e não de delay inline.
+     ======================================================================= */
+  @keyframes entra-subindo {
+    from {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes entra-crescendo {
+    from {
+      opacity: 0;
+      transform: scale(0.78) translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes entra-riscando {
+    from {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Aproximação lenta do fundo: doze segundos para 6%. O olho não vê o
+     movimento acontecer, só sente que o quadro está vivo. */
+  @keyframes aproxima-fundo {
+    from {
+      transform: scale(1.06);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  .entra {
+    animation: entra-subindo 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .entra-crescendo {
+    animation: entra-crescendo 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .entra-riscando {
+    animation: entra-riscando 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .entra-fundo {
+    animation: aproxima-fundo 12s ease-out both;
+  }
+
+  .atraso-1 {
+    animation-delay: 80ms;
+  }
+  .atraso-2 {
+    animation-delay: 180ms;
+  }
+  .atraso-3 {
+    animation-delay: 280ms;
+  }
+  .atraso-4 {
+    animation-delay: 400ms;
+  }
+  .atraso-5 {
+    animation-delay: 500ms;
+  }
+  .atraso-6 {
+    animation-delay: 620ms;
+  }
+
   /* Textura discreta para placeholders de imagem ainda não fornecidas */
   .textura-placeholder {
     background-image: repeating-linear-gradient(
@@ -244,6 +334,60 @@
       color-mix(in srgb, var(--bordo-900) 6%, transparent) 7px,
       color-mix(in srgb, var(--bordo-900) 6%, transparent) 8px
     );
+  }
+
+  /*
+   * Cartão institucional interativo. O gesto é o mesmo em toda parte: sobe
+   * três pixels, ganha um fio dourado na borda e a foto interna se aproxima
+   * de leve. Nada de sombra difusa nem salto grande, que soariam promocionais.
+   */
+  .cartao-interativo {
+    transition:
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 320ms ease,
+      background-color 320ms ease,
+      box-shadow 320ms ease;
+  }
+
+  .cartao-interativo:hover,
+  .cartao-interativo:focus-within {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--dourado-700) 50%, transparent);
+    box-shadow: 0 18px 40px -26px rgba(26, 26, 26, 0.5);
+  }
+
+  .cartao-interativo img {
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cartao-interativo:hover img,
+  .cartao-interativo:focus-within img {
+    transform: scale(1.05);
+  }
+
+  /* Entrada do botão flutuante: chega depois da abertura, sem roubar a cena. */
+  @keyframes surgir-flutuante {
+    from {
+      opacity: 0;
+      transform: scale(0.6) translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .surgir-flutuante {
+    animation: surgir-flutuante 520ms 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cartao-interativo:hover,
+    .cartao-interativo:focus-within,
+    .cartao-interativo:hover img,
+    .cartao-interativo:focus-within img {
+      transform: none;
+    }
   }
 
   /* Versão escura: usada onde há texto claro sobreposto (hero, blocos bordô) */

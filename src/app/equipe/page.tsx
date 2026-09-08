@@ -7,7 +7,8 @@ import { Container } from "@/components/shared/container";
 import { CtaWhatsApp } from "@/components/shared/cta-whatsapp";
 import { Imagem } from "@/components/shared/imagem";
 import { Revelar } from "@/components/shared/revelar";
-import { Filete, SectionHeading } from "@/components/shared/section-heading";
+import { FileteRevelado } from "@/components/shared/revelar";
+import { SectionHeading } from "@/components/shared/section-heading";
 import { equipe, socioFundador } from "@/content/equipe";
 import { jsonLdMigalhas, jsonLdPessoa } from "@/lib/jsonld";
 
@@ -56,7 +57,7 @@ export default function PaginaEquipe() {
 
               <div className="lg:col-span-8">
                 <span className="sobrancelha">{socioFundador.cargo}</span>
-                <Filete className="mt-4" />
+                <FileteRevelado className="mt-4" />
                 <h2
                   id="fundador-titulo"
                   className="mt-5 text-[1.75rem] sm:text-[2.125rem]"

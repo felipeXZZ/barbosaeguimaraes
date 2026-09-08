@@ -4,8 +4,7 @@ import { LinkContato } from "@/components/layout/link-contato";
 import { Container } from "@/components/shared/container";
 import { CtaWhatsApp } from "@/components/shared/cta-whatsapp";
 import { FormularioContato } from "@/components/shared/formulario-contato";
-import { Revelar } from "@/components/shared/revelar";
-import { Filete } from "@/components/shared/section-heading";
+import { FileteRevelado, Revelar } from "@/components/shared/revelar";
 import { site } from "@/content/site";
 
 export function ContatoFinal() {
@@ -16,9 +15,9 @@ export function ContatoFinal() {
     >
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <Revelar className="lg:col-span-5">
+          <Revelar direcao="esquerda" className="lg:col-span-5">
             <span className="sobrancelha">Contato</span>
-            <Filete className="mt-4" />
+            <FileteRevelado className="mt-4" />
             <h2
               id="contato-titulo"
               className="mt-6 text-[1.75rem] sm:text-[2.125rem]"
@@ -66,7 +65,7 @@ export function ContatoFinal() {
             </div>
           </Revelar>
 
-          <Revelar atraso={0.1} className="lg:col-span-7">
+          <Revelar direcao="direita" atraso={0.12} className="lg:col-span-7">
             <div className="border border-areia-50/20 p-6 lg:p-8">
               <h3 className="font-serif text-[1.25rem]">
                 Envie uma mensagem ao escritório

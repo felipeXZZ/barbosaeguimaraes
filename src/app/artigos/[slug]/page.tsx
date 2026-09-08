@@ -10,7 +10,7 @@ import { Container } from "@/components/shared/container";
 import { CtaWhatsApp } from "@/components/shared/cta-whatsapp";
 import { Imagem } from "@/components/shared/imagem";
 import { Revelar } from "@/components/shared/revelar";
-import { Filete } from "@/components/shared/section-heading";
+import { FileteRevelado } from "@/components/shared/revelar";
 import { artigos, artigosOrdenados, buscarArtigo } from "@/content/artigos";
 import { site } from "@/content/site";
 import { jsonLdArtigo, jsonLdMigalhas } from "@/lib/jsonld";
@@ -79,7 +79,7 @@ export default async function PaginaArtigo({ params }: Props) {
             </Link>
 
             <span className="sobrancelha mt-8 block">{artigo.category}</span>
-            <Filete className="mt-4" />
+            <FileteRevelado className="mt-4" />
 
             <h1 className="mt-6 text-[1.875rem] sm:text-[2.375rem] lg:text-[2.75rem]">
               {artigo.title}

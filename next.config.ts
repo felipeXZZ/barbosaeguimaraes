@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     formats: ["image/avif", "image/webp"],
+    /* Qualidades usadas no site. A partir do Next 16 é obrigatório declarar. */
+    qualities: [75, 90, 95],
     // Todas as imagens são locais, servidas de /public.
     remotePatterns: [],
   },

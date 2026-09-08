@@ -2,7 +2,11 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import { Container } from "@/components/shared/container";
-import { Revelar } from "@/components/shared/revelar";
+import {
+  Revelar,
+  RevelarGrupo,
+  RevelarItem,
+} from "@/components/shared/revelar";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { areas } from "@/content/areas";
 
@@ -37,22 +41,23 @@ export function GradeAreas() {
       </Container>
 
       <Container className="mt-12">
-        <ul
+        <RevelarGrupo
+          as="ul"
           className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3"
-          role="list"
         >
           {areas.map((area) => (
-            <li
+            <RevelarItem
+              as="li"
               key={area.slug}
               className="w-[78vw] shrink-0 snap-start sm:w-[52vw] md:w-auto"
             >
               <Link
                 href={`/areas-de-atuacao/${area.slug}`}
-                className="group flex h-full flex-col gap-4 border border-areia-200 bg-areia-50 p-6 transition-colors hover:bg-areia-100 lg:p-8"
+                className="cartao-interativo group flex h-full flex-col gap-4 border border-areia-200 bg-areia-50 p-6 hover:bg-areia-100 lg:p-8"
               >
                 <area.icone
                   aria-hidden
-                  className="size-6 text-dourado-700 transition-colors group-hover:text-bordo-700"
+                  className="size-6 text-dourado-700 transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:text-bordo-700 motion-reduce:group-hover:translate-y-0"
                 />
                 <h3 className="font-serif text-[1.25rem] text-bordo-900">
                   {area.nome}
@@ -68,9 +73,9 @@ export function GradeAreas() {
                   />
                 </span>
               </Link>
-            </li>
+            </RevelarItem>
           ))}
-        </ul>
+        </RevelarGrupo>
 
         <Link
           href="/areas-de-atuacao"
