@@ -24,12 +24,6 @@ export const slidesHero: SlideHero[] = [
       "Advogados analisando um caso sobre a mesa, com códigos e a balança",
     foco: "centro",
   },
-  {
-    src: "/images/hero/supremo-tribunal-federal.jpg",
-    descricao:
-      "Sede do Supremo Tribunal Federal, com a escultura A Justiça, em Brasília",
-    foco: "centro",
-  },
   /* Ainda não fornecidas. Ficam listadas de propósito: entram sozinhas no
      rodízio assim que os arquivos forem colocados na pasta. */
   {

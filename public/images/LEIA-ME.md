@@ -19,7 +19,6 @@ com o nome abaixo que a foto entra no rodízio, sem mexer no código.
 |---|---|
 | `hermes-tribuna.jpg` | já no ar |
 | `estudo-de-caso.jpg` | já no ar |
-| `supremo-tribunal-federal.jpg` | já no ar |
 | `escritorio-fachada.jpg` | **falta**: fachada ou recepção do escritório |
 | `praca-joao-mendes.jpg` | **falta**: a praça e o Fórum, no centro |
 
