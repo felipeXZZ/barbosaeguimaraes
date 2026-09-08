@@ -85,11 +85,9 @@ export interface Artigo {
 export interface SlideHero {
   /** Arquivo em /public/images/hero/ */
   src: string;
-  /** Alt real e descritivo. */
-  alt: string;
-  /**
-   * "contain" para artes que já trazem fundo próprio, como o brasão;
-   * "cover" para fotografia, que deve preencher o quadro.
-   */
-  ajuste: "contain" | "cover";
+  /** Descreve a cena para quem edita o conteúdo. No topo a foto é
+   *  decorativa, então o alt entregue ao navegador é vazio. */
+  descricao: string;
+  /** Lado da foto que não pode ser cortado quando o quadro é largo. */
+  foco?: "centro" | "topo" | "direita" | "esquerda";
 }

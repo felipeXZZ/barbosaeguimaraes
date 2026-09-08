@@ -9,9 +9,25 @@ As fotos são exibidas em cor original. Suba já tratadas, com luz e recorte
 coerentes entre si.
 
 ## hero/
-| Arquivo | Uso | Proporção sugerida |
-|---|---|---|
-| `hero-escritorio.jpg` | Fundo do topo da home | 2400x1400 (paisagem) |
+As fotos do topo da home se alternam sozinhas, uma a cada 7 segundos.
+A lista fica em `src/content/hero.ts`, na ordem de exibição.
+
+**O topo ignora item cujo arquivo ainda não existe.** Basta colocar o arquivo
+com o nome abaixo que a foto entra no rodízio, sem mexer no código.
+
+| Arquivo | Situação |
+|---|---|
+| `hermes-tribuna.jpg` | já no ar |
+| `supremo-tribunal-federal.jpg` | já no ar |
+| `escritorio-fachada.jpg` | **falta**: fachada ou recepção do escritório |
+| `praca-joao-mendes.jpg` | **falta**: a praça e o Fórum, no centro |
+
+Paisagem, mínimo 2000px de largura. Abaixo disso a foto aparece macia numa
+tela grande, porque no topo ela ocupa o quadro inteiro. Evite foto com o
+assunto principal bem no meio: ali fica o nome do escritório.
+
+`brasao.png` e `brasao-escudo.png` são a marca, não fotografia: não entram
+no rodízio.
 
 ## equipe/
 Um retrato por profissional, enquadramento vertical, fundo neutro.

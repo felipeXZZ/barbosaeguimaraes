@@ -12,8 +12,9 @@ export const BLUR_BORDO =
 
 const cacheExistencia = new Map<string, boolean>();
 
-/** Verifica em /public se o arquivo já foi fornecido pelo cliente. */
-function arquivoExiste(src: string): boolean {
+/** Verifica em /public se o arquivo já foi fornecido pelo cliente.
+ *  Só roda no servidor: nunca chame de dentro de um client component. */
+export function arquivoExiste(src: string): boolean {
   if (!src.startsWith("/")) return true;
   const cacheado = cacheExistencia.get(src);
   if (cacheado !== undefined) return cacheado;

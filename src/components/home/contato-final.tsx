@@ -11,7 +11,7 @@ export function ContatoFinal() {
   return (
     <section
       aria-labelledby="contato-titulo"
-      className="sobre-bordo bg-bordo-900 py-16 text-areia-50 lg:py-24"
+      className="sobre-bordo bg-gradient-to-b from-bordo-800 to-bordo-900 py-16 text-areia-50 lg:py-24"
     >
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">

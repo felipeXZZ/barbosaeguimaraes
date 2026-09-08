@@ -27,7 +27,7 @@ export function CabecalhoPagina({
   migalhas?: Migalha[];
 }) {
   return (
-    <section className="sobre-bordo bg-bordo-900 py-12 text-areia-50 lg:py-20">
+    <section className="sobre-bordo bg-gradient-to-b from-bordo-800 to-bordo-900 py-12 text-areia-50 lg:py-20">
       <Container>
         {migalhas.length > 0 ? (
           <nav aria-label="Trilha de navegação" className="mb-8">
