@@ -40,16 +40,18 @@ export function Hero() {
     >
       <FundoRotativo slides={fotos} />
 
-      {/* Véu bordô: dá unidade de cor a fotos de origens diferentes. */}
+      {/* Véu bordô: dá unidade de cor a fotos de origens diferentes. Leve de
+          propósito, para a fotografia não virar uma mancha só. */}
       <span
         aria-hidden
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-bordo-900/75 via-bordo-800/58 to-bordo-900/82"
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-bordo-900/52 via-bordo-800/34 to-bordo-900/62"
       />
 
-      {/* Escurecimento atrás do bloco central, onde o texto precisa de base. */}
+      {/* Escurecimento atrás do bloco central. Tem patamar até 46% do raio
+          para o texto inteiro pousar sobre a mesma base, e não só o título. */}
       <span
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_64%_60%_at_50%_50%,rgba(37,8,10,0.72)_0%,rgba(37,8,10,0.34)_62%,rgba(37,8,10,0)_100%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_72%_64%_at_50%_50%,rgba(37,8,10,0.58)_0%,rgba(37,8,10,0.55)_46%,rgba(37,8,10,0.24)_78%,rgba(37,8,10,0)_100%)]"
       />
 
       <Container className="py-14 sm:py-16">

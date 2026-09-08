@@ -69,7 +69,7 @@ export function FundoRotativo({ slides }: { slides: SlideHero[] }) {
             priority={indice === 0}
             sizes="100vw"
             className={cn(
-              "object-cover transition-opacity duration-[1600ms] ease-in-out motion-reduce:transition-none",
+              "object-cover saturate-[1.45] contrast-[1.12] transition-opacity duration-[1600ms] ease-in-out motion-reduce:transition-none",
               posicao[slide.foco ?? "centro"],
               /* A primeira foto ganha a aproximação lenta da abertura. */
               indice === 0 && "entra-fundo",
