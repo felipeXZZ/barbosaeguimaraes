@@ -9,11 +9,17 @@ import type { SlideHero } from "@/types/content";
 /** Tempo de cada foto no ar, já contando a transição. */
 const PERMANENCIA_MS = 7000;
 
+/*
+ * O lado escolhido só vale da tela média para cima. No celular o quadro é
+ * estreito e alto: a foto perde as laterais inteiras, e puxar o corte para um
+ * dos lados joga o assunto para fora ou o encosta na borda. Ali o centro é
+ * sempre o corte mais seguro.
+ */
 const posicao: Record<NonNullable<SlideHero["foco"]>, string> = {
   centro: "object-center",
-  topo: "object-top",
-  direita: "object-right",
-  esquerda: "object-left",
+  topo: "object-center md:object-top",
+  direita: "object-center md:object-right",
+  esquerda: "object-center md:object-left",
 };
 
 /**
