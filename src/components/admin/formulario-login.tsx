@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { AlertCircle, Loader2 } from "lucide-react";
+import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { supabaseNavegador } from "@/lib/supabase/navegador";
@@ -15,6 +15,7 @@ export function FormularioLogin() {
   const [senha, setSenha] = React.useState("");
   const [erro, setErro] = React.useState("");
   const [enviando, setEnviando] = React.useState(false);
+  const [mostrarSenha, setMostrarSenha] = React.useState(false);
 
   async function aoEnviar(evento: React.FormEvent<HTMLFormElement>) {
     evento.preventDefault();
@@ -70,15 +71,32 @@ export function FormularioLogin() {
         <label htmlFor="senha" className="block text-[0.875rem] font-medium">
           Senha
         </label>
-        <input
-          id="senha"
-          type="password"
-          autoComplete="current-password"
-          required
-          value={senha}
-          onChange={(evento) => setSenha(evento.target.value)}
-          className={CAMPO}
-        />
+        <div className="relative">
+          <input
+            id="senha"
+            type={mostrarSenha ? "text" : "password"}
+            autoComplete="current-password"
+            required
+            value={senha}
+            onChange={(evento) => setSenha(evento.target.value)}
+            /* pr-12 abre espaço para o olho não cobrir o que se digita. */
+            className={`${CAMPO} pr-12`}
+          />
+          <button
+            type="button"
+            onClick={() => setMostrarSenha((atual) => !atual)}
+            aria-label={mostrarSenha ? "Ocultar senha" : "Mostrar senha"}
+            aria-pressed={mostrarSenha}
+            /* bottom-0 alinha com o campo, que desce 2 por causa do mt-2. */
+            className="absolute right-0 bottom-0 flex size-12 items-center justify-center rounded-[2px] text-grafite-600 transition-colors outline-none hover:text-bordo-700 focus-visible:ring-2 focus-visible:ring-dourado-700"
+          >
+            {mostrarSenha ? (
+              <EyeOff aria-hidden className="size-5" />
+            ) : (
+              <Eye aria-hidden className="size-5" />
+            )}
+          </button>
+        </div>
       </div>
 
       {erro ? (
