@@ -1,6 +1,7 @@
 "use server";
 
 import { enviarEmailContato, envioConfigurado } from "@/lib/mail";
+import { registrarMensagem } from "@/lib/mensagens";
 import { esquemaContato, type ResultadoEnvio } from "@/lib/schemas";
 
 /**
@@ -23,18 +24,26 @@ export async function enviarContato(dados: unknown): Promise<ResultadoEnvio> {
     return { status: "ok" };
   }
 
+  /* Grava antes de enviar. O e-mail é o aviso; o banco é o registro. Se o
+     provedor de e-mail estiver fora do ar, o contato ainda aparece em
+     /admin/mensagens em vez de se perder. */
+  const gravado = await registrarMensagem(validacao.data);
+
+  const indisponivel: ResultadoEnvio = {
+    status: "erro",
+    mensagem:
+      "O envio por formulário está temporariamente indisponível. Fale com o escritório pelo WhatsApp ou pelo telefone.",
+  };
+
   if (!envioConfigurado) {
-    return {
-      status: "erro",
-      mensagem:
-        "O envio por formulário está temporariamente indisponível. Fale com o escritório pelo WhatsApp ou pelo telefone.",
-    };
+    return gravado ? { status: "ok" } : indisponivel;
   }
 
   try {
     await enviarEmailContato(validacao.data);
     return { status: "ok" };
   } catch {
+    if (gravado) return { status: "ok" };
     return {
       status: "erro",
       mensagem:

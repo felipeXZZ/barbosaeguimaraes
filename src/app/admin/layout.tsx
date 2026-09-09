@@ -3,6 +3,8 @@ import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 import { sair } from "@/app/actions/artigos";
+import { NavAdmin } from "@/components/admin/nav-admin";
+import { contarMensagensNaoLidas } from "@/lib/mensagens";
 import { ehEditor, usuarioAtual } from "@/lib/supabase/servidor";
 
 export const metadata: Metadata = {
@@ -21,6 +23,9 @@ export default async function LayoutAdmin({
      precisa estar na tabela `editores`. Sem isso o painel só explicaria o
      problema com um erro do banco na hora de salvar. */
   const autorizado = usuario ? await ehEditor() : false;
+  /* Aviso no menu. Quem não é editor não lê a tabela, e a contagem devolve
+     zero em vez de estourar. */
+  const naoLidas = autorizado ? await contarMensagensNaoLidas() : 0;
 
   return (
     <div className="min-h-full bg-areia-50">
@@ -31,8 +36,12 @@ export default async function LayoutAdmin({
               href="/admin"
               className="font-serif text-[1.0625rem] text-bordo-900"
             >
-              Painel de artigos
+              Painel
             </Link>
+
+            <span aria-hidden className="h-4 w-px bg-areia-200" />
+
+            {autorizado ? <NavAdmin naoLidas={naoLidas} /> : null}
 
             <span aria-hidden className="h-4 w-px bg-areia-200" />
 

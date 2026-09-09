@@ -116,6 +116,45 @@ Pronto: daí em diante os cinco artigos antigos são editáveis pelo painel como
 qualquer outro. (Esse botão só funciona com a lista vazia, então não há como
 duplicar por engano.)
 
+## 8. Ligar as mensagens do formulário e a lista de divulgação
+
+Mesma receita do passo 2, com outro arquivo: **SQL Editor** → **New query**,
+cole o conteúdo de [`mensagens-e-mailing.sql`](./mensagens-e-mailing.sql) e
+clique em **Run**. Rodar de novo não estraga nada.
+
+Isso cria duas tabelas:
+
+- **`mensagens`**: cada envio do formulário de contato passa a ficar
+  registrado, além de continuar chegando por e-mail. O escritório lê em
+  `/admin/mensagens`, marca como lida e apaga quando quiser. Se o provedor de
+  e-mail falhar, o contato não se perde mais.
+- **`mailing`**: os nomes e e-mails para quem o escritório divulga as
+  matérias, em `/admin/mailing`.
+
+Enquanto esse arquivo não for rodado, as duas telas do painel explicam o que
+falta em vez de mostrarem lista vazia. O resto do site continua igual.
+
+### A lista de divulgação, na prática
+
+Em `/admin/mailing`:
+
+- **Importar lista**: cole os contatos, um por linha, direto da planilha. Vale
+  `Ana Souza; ana@exemplo.com; OAB/SP 123456`, `Ana Souza, ana@exemplo.com`,
+  `Ana Souza <ana@exemplo.com>` ou só `ana@exemplo.com`. A tela mostra quantos
+  contatos encontrou antes de gravar. Linha sem e-mail (o cabeçalho da
+  planilha, por exemplo) é pulada.
+- **E-mail repetido não duplica**: o endereço é único na tabela, então importar
+  a mesma planilha duas vezes só acrescenta o que ainda não estava lá.
+- **Interruptor "Recebe"**: tira alguém dos envios sem apagar o cadastro.
+  **Excluir** apaga de vez, que é o que se faz quando a pessoa pede para sair.
+- **Baixar em CSV**: a lista inteira, para abrir no Excel ou levar para a
+  ferramenta de envio.
+
+> Nem a lista nem as mensagens podem ser lidas pela chave pública que vai no
+> navegador: as regras de RLS só entregam essas tabelas a quem está na lista de
+> editores. O envio dos e-mails de divulgação ainda não é feito pelo site: a
+> lista existe para alimentar a ferramenta que o escritório escolher.
+
 ---
 
 ## Como o escritório usa, no dia a dia
@@ -147,9 +186,12 @@ O botão **"Ver como vai ficar"** mostra o resultado antes de publicar.
 
 | O quê | Onde |
 | --- | --- |
-| Estrutura do banco | [`schema.sql`](./schema.sql) |
+| Estrutura do banco (artigos) | [`schema.sql`](./schema.sql) |
+| Estrutura do banco (mensagens e mailing) | [`mensagens-e-mailing.sql`](./mensagens-e-mailing.sql) |
 | Leitura dos artigos | `src/lib/artigos.ts` |
-| Ações do painel | `src/app/actions/artigos.ts` |
+| Mensagens recebidas | `src/lib/mensagens.ts` |
+| Lista de divulgação | `src/lib/mailing.ts` + `src/lib/mailing-importar.ts` |
+| Ações do painel | `src/app/actions/artigos.ts`, `mensagens.ts`, `mailing.ts` |
 | Telas do painel | `src/app/admin/` |
 | Proteção das rotas | `src/middleware.ts` |
 | Validação dos campos | `src/lib/artigo-schema.ts` |

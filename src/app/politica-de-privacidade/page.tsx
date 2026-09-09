@@ -169,6 +169,12 @@ export default function PaginaPolitica() {
               dados apenas conforme instrução do controlador.
             </p>
             <p>
+              As mensagens enviadas pelo formulário também ficam registradas em
+              banco de dados mantido por provedor de infraestrutura, igualmente
+              na condição de operador, com acesso restrito às pessoas
+              autorizadas do escritório.
+            </p>
+            <p>
               O compartilhamento com terceiros fora dessa hipótese só ocorre por
               determinação legal, ordem judicial ou requisição de autoridade
               competente, e nos estritos limites da requisição, resguardado o
