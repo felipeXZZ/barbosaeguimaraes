@@ -635,7 +635,7 @@ function ImportarPlanilha({
               disabled={importando}
               onChange={(evento) => setOrigem(evento.target.value)}
               maxLength={120}
-              placeholder="Ex.: cadastro da OAB, FADESP ativos"
+              placeholder="Ex.: cadastro da OAB, FADESPBRASIL ativos"
               className={CAMPO_LINHA}
             />
           </Campo>

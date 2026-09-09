@@ -17,13 +17,13 @@ export const equipe: MembroEquipe[] = [
       "Pós-graduado pela Pontifícia Universidade Católica",
       "Conselheiro Representante da OAB",
       "Sócio efetivo do Instituto dos Advogados Brasileiros (IAB)",
-      "Presidente da Federação dos Advogados do Estado de São Paulo (FADESP)",
+      "Presidente da FADESPBRASIL, Federação Nacional dos Advogados, Estagiários e Bacharéis",
       "Conselheiro Federal da Ordem dos Advogados do Brasil",
     ],
     bio: [
       "Advogado, jurisconsulto e especialista em Direito Penal, pós-graduado pela Pontifícia Universidade Católica. Construiu a carreira atuando em diversos ramos do direito e participando do debate institucional da advocacia.",
       "Convidado pela Associação Comercial de São Paulo, exerceu três mandatos como Conselheiro Distrital. Na Ordem dos Advogados do Brasil, foi Conselheiro Representante na Fundação do Bem Estar do Menor, Secretário e Vice-Presidente da Caixa dos Advogados do Estado de São Paulo, membro das Comissões de Prerrogativas, de Estágio e Exame de Ordem e de Direitos Humanos, e Secretário Geral.",
-      "Sócio efetivo do Instituto dos Advogados Brasileiros, participou da criação da Federação dos Advogados do Estado de São Paulo, onde exerce a presidência. Foi Presidente da Carteira de Previdência dos Advogados do Estado de São Paulo e Presidente da Comissão de Direito Bancário da OAB Federal, e foi eleito Conselheiro Federal da Ordem dos Advogados do Brasil.",
+      "Sócio efetivo do Instituto dos Advogados Brasileiros, participou da criação da FADESPBRASIL, Federação Nacional dos Advogados, Estagiários e Bacharéis, onde exerce a presidência. Foi Presidente da Carteira de Previdência dos Advogados do Estado de São Paulo e Presidente da Comissão de Direito Bancário da OAB Federal, e foi eleito Conselheiro Federal da Ordem dos Advogados do Brasil.",
     ],
     resumo:
       "Advogado, jurisconsulto e especialista em Direito Penal. Construiu a carreira atuando em diversos ramos do direito e participando do debate institucional da advocacia.",
@@ -35,8 +35,9 @@ export const equipe: MembroEquipe[] = [
       },
       {
         icone: Users,
-        rotulo: "FADESP",
-        detalhe: "Presidente da Federação dos Advogados do Estado de São Paulo",
+        rotulo: "FADESPBRASIL",
+        detalhe:
+          "Presidente da Federação Nacional dos Advogados, Estagiários e Bacharéis",
       },
       {
         icone: Landmark,
@@ -81,7 +82,7 @@ export const equipe: MembroEquipe[] = [
       "Atuação trabalhista e previdenciária",
       "Advocacia consultiva",
       "Associado ao escritório desde 2013",
-      "Ex-tesoureiro-adjunto da Federação Nacional dos Advogados, Estagiários e Bacharéis (FADESP)",
+      "Ex-tesoureiro-adjunto da FADESPBRASIL, Federação Nacional dos Advogados, Estagiários e Bacharéis",
     ],
     foto: "/images/equipe/helio-mendes-da-silva.jpg",
     fotoAlt:
