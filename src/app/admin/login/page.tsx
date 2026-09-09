@@ -20,10 +20,13 @@ export default function PaginaLogin() {
           <FormularioLogin />
         ) : (
           <p className="text-[0.9375rem] text-grafite-600">
-            O painel ainda não está conectado ao banco de dados. Configure as
-            variáveis <code>NEXT_PUBLIC_SUPABASE_URL</code> e{" "}
-            <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> e rode o arquivo{" "}
-            <code>supabase/schema.sql</code> no painel do Supabase.
+            O painel ainda não está conectado ao banco de dados. Configure{" "}
+            <code>NEXT_PUBLIC_SUPABASE_URL</code> e{" "}
+            <code>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code> (ou{" "}
+            <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code>, em projetos antigos do
+            Supabase) no ambiente onde o site roda, e rode o arquivo{" "}
+            <code>supabase/schema.sql</code> no painel do Supabase. Em
+            produção, as variáveis só passam a valer no deploy seguinte.
           </p>
         )}
       </div>
