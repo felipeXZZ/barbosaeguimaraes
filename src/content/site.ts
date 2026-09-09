@@ -37,7 +37,7 @@ export const site = {
     telefoneE164: "+5511976373255",
     telefoneDigitos: "5511976373255",
     telefoneFormatado: "(11) 97637-3255",
-    email: "contato@barbosaeguimaraes.adv.br",
+    email: "barbosaadvsite@gmail.com",
   },
 
   horario: {

@@ -63,7 +63,7 @@ deploy.
 No Supabase: **Authentication** → **Users** → **Add user** → **Create new
 user**.
 
-- E-mail: o do escritório (ex.: `contato@barbosaeguimaraes.adv.br`)
+- E-mail: o do escritório (ex.: `barbosaadvsite@gmail.com`)
 - Senha: defina uma
 - Marque **Auto Confirm User** (senão o Supabase manda e-mail de confirmação)
 
@@ -120,7 +120,7 @@ duplicar por engano.)
 
 ## Como o escritório usa, no dia a dia
 
-1. Acessa `barbosaeguimaraes.adv.br/admin` e entra com e-mail e senha.
+1. Acessa `barbosaadv.com.br/admin` e entra com e-mail e senha.
 2. **Novo artigo**.
 3. Escreve o título; o endereço da página é preenchido sozinho.
 4. Escolhe a categoria, a data e envia a foto de capa (horizontal, até 8 MB).

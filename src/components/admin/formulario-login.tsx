@@ -62,7 +62,7 @@ export function FormularioLogin() {
           value={email}
           onChange={(evento) => setEmail(evento.target.value)}
           className={CAMPO}
-          placeholder="voce@barbosaadv.com.br"
+          placeholder="barbosaadvsite@gmail.com"
         />
       </div>
 

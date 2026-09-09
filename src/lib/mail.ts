@@ -14,8 +14,11 @@ import type { DadosContato } from "@/lib/schemas";
 
 const CHAVE = process.env.RESEND_API_KEY;
 const DESTINO = process.env.CONTATO_EMAIL_DESTINO ?? site.contato.email;
+/* O destino é o e-mail do escritório e pode ser um Gmail. O remetente, não:
+   o Resend só envia de domínio verificado por ele, e gmail.com nunca é
+   verificável. Por isso o padrão fica no domínio do site. */
 const REMETENTE =
-  process.env.CONTATO_EMAIL_REMETENTE ?? "site@barbosaeguimaraes.adv.br";
+  process.env.CONTATO_EMAIL_REMETENTE ?? "site@barbosaadv.com.br";
 
 export const envioConfigurado = Boolean(CHAVE);
 
