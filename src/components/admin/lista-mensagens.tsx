@@ -154,7 +154,10 @@ function CartaoMensagem({
       </button>
 
       {aberto ? (
-        <div id={corpoId} className="border-t border-areia-200 p-3 sm:p-4">
+        <div
+          id={corpoId}
+          className="abre-painel border-t border-areia-200 p-3 sm:p-4"
+        >
           <p className="text-[0.9375rem] leading-relaxed whitespace-pre-wrap text-grafite-900">
             {mensagem.mensagem}
           </p>
@@ -217,7 +220,7 @@ export function ListaMensagens({
   mensagens: (Mensagem & { areaNome: string })[];
 }) {
   return (
-    <ul className="mt-6 flex flex-col gap-3">
+    <ul className="entra-lista mt-6 flex flex-col gap-3">
       {mensagens.map((mensagem) => (
         <CartaoMensagem
           key={mensagem.id}

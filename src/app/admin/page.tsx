@@ -49,7 +49,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
 
   return (
     <>
-      <header className="flex flex-wrap items-end justify-between gap-5 sm:gap-6">
+      <header className="entra-leve flex flex-wrap items-end justify-between gap-5 sm:gap-6">
         <div>
           <span className="sobrancelha block">Conteúdo do site</span>
           <h1 className="mt-3 font-serif text-[1.875rem] text-bordo-900">
@@ -72,7 +72,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
       </header>
 
       {artigos.length === 0 ? (
-        <div className="mt-8 border border-areia-200 bg-white p-6 sm:mt-10 sm:p-8">
+        <div className="entra-leve atraso-1 mt-8 border border-areia-200 bg-white p-6 sm:mt-10 sm:p-8">
           <h2 className="font-serif text-[1.25rem] text-bordo-900">
             A lista está vazia
           </h2>
@@ -89,7 +89,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
         <>
           <nav
             aria-label="Filtrar artigos"
-            className="mt-8 flex items-center gap-1 overflow-x-auto border-b border-areia-200 sm:mt-10 sm:flex-wrap sm:overflow-x-visible"
+            className="entra-leve atraso-1 mt-8 flex items-center gap-1 overflow-x-auto border-b border-areia-200 sm:mt-10 sm:flex-wrap sm:overflow-x-visible"
           >
             {FILTROS.map((item) => {
               const selecionado = item.chave === ativo;
@@ -130,7 +130,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
                 : "Nenhum artigo publicado no momento."}
             </p>
           ) : (
-            <ul className="mt-6 flex flex-col gap-3">
+            <ul className="entra-lista mt-6 flex flex-col gap-3">
               {visiveis.map((artigo) => (
                 <li
                   key={artigo.id}

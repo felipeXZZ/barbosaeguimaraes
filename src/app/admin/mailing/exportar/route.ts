@@ -19,13 +19,34 @@ export async function GET() {
   const contatos = await listarMailingCompleto();
 
   const linhas = [
-    ["nome", "email", "observacao", "origem", "recebe", "cadastrado_em"].join(
-      ";",
-    ),
+    [
+      "nome",
+      "email",
+      "telefone",
+      "endereco",
+      "bairro",
+      "cidade",
+      "uf",
+      "cep",
+      "oab",
+      "subsecao",
+      "observacao",
+      "origem",
+      "recebe",
+      "cadastrado_em",
+    ].join(";"),
     ...contatos.map((contato) =>
       [
         campo(contato.nome),
         campo(contato.email),
+        campo(contato.telefone),
+        campo(contato.endereco),
+        campo(contato.bairro),
+        campo(contato.cidade),
+        campo(contato.uf),
+        campo(contato.cep),
+        campo(contato.oab),
+        campo(contato.subsecao),
         campo(contato.observacao),
         campo(contato.origem),
         campo(contato.ativo ? "sim" : "nao"),

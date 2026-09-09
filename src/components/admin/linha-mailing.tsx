@@ -65,6 +65,22 @@ export function LinhaMailing({ contato }: { contato: ContatoMailing }) {
 
   if (sumiu) return null;
 
+  /* Linha de apoio: só o que a planilha trouxe, na ordem em que ajuda a
+     reconhecer a pessoa. */
+  const local = [contato.cidade, contato.uf].filter(Boolean).join("/");
+  const detalhes = [
+    contato.telefone,
+    contato.endereco,
+    contato.bairro,
+    local,
+    contato.oab ? `OAB ${contato.oab}` : "",
+    contato.subsecao,
+    contato.observacao,
+    contato.origem,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+
   return (
     <li
       className={cn(
@@ -89,9 +105,9 @@ export function LinhaMailing({ contato }: { contato: ContatoMailing }) {
             {contato.email}
           </a>
         </p>
-        {contato.observacao || contato.origem ? (
-          <p className="mt-1 line-clamp-1 text-[0.8125rem] text-grafite-600">
-            {[contato.observacao, contato.origem].filter(Boolean).join(" · ")}
+        {detalhes ? (
+          <p className="mt-1 line-clamp-2 text-[0.8125rem] text-grafite-600">
+            {detalhes}
           </p>
         ) : null}
         {erro ? (

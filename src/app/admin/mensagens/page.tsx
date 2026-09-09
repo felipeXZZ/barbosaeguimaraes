@@ -21,7 +21,7 @@ interface Props {
 
 function Cabecalho({ descricao }: { descricao: string }) {
   return (
-    <header>
+    <header className="entra-leve">
       <span className="sobrancelha block">Contatos do site</span>
       <h1 className="mt-3 font-serif text-[1.875rem] text-bordo-900">
         Mensagens
@@ -74,7 +74,7 @@ export default async function PaginaMensagens({ searchParams }: Props) {
       />
 
       {mensagens.length === 0 ? (
-        <div className="mt-8 border border-areia-200 bg-white p-6 sm:mt-10 sm:p-8">
+        <div className="entra-leve atraso-1 mt-8 border border-areia-200 bg-white p-6 sm:mt-10 sm:p-8">
           <h2 className="font-serif text-[1.25rem] text-bordo-900">
             A caixa está vazia
           </h2>
@@ -89,7 +89,7 @@ export default async function PaginaMensagens({ searchParams }: Props) {
         <>
           <nav
             aria-label="Filtrar mensagens"
-            className="mt-8 flex items-center gap-1 overflow-x-auto border-b border-areia-200 sm:mt-10 sm:flex-wrap sm:overflow-x-visible"
+            className="entra-leve atraso-1 mt-8 flex items-center gap-1 overflow-x-auto border-b border-areia-200 sm:mt-10 sm:flex-wrap sm:overflow-x-visible"
           >
             {FILTROS.map((item) => {
               const selecionado = item.chave === ativo;

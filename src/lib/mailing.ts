@@ -7,6 +7,14 @@ export interface ContatoMailing {
   id: string;
   nome: string;
   email: string;
+  telefone: string;
+  endereco: string;
+  bairro: string;
+  cidade: string;
+  uf: string;
+  cep: string;
+  oab: string;
+  subsecao: string;
   observacao: string;
   origem: string;
   ativo: boolean;
@@ -18,13 +26,22 @@ interface LinhaMailing {
   id: string;
   nome: string;
   email: string;
+  telefone: string;
+  endereco: string;
+  bairro: string;
+  cidade: string;
+  uf: string;
+  cep: string;
+  oab: string;
+  subsecao: string;
   observacao: string;
   origem: string;
   ativo: boolean;
   criado_em: string;
 }
 
-const COLUNAS = "id, nome, email, observacao, origem, ativo, criado_em";
+const COLUNAS =
+  "id, nome, email, telefone, endereco, bairro, cidade, uf, cep, oab, subsecao, observacao, origem, ativo, criado_em";
 
 /** Contatos por página na listagem do painel. */
 export const POR_PAGINA = 100;
@@ -34,6 +51,14 @@ function paraContato(linha: LinhaMailing): ContatoMailing {
     id: linha.id,
     nome: linha.nome,
     email: linha.email,
+    telefone: linha.telefone,
+    endereco: linha.endereco,
+    bairro: linha.bairro,
+    cidade: linha.cidade,
+    uf: linha.uf,
+    cep: linha.cep,
+    oab: linha.oab,
+    subsecao: linha.subsecao,
     observacao: linha.observacao,
     origem: linha.origem,
     ativo: linha.ativo,
@@ -77,7 +102,7 @@ export async function listarMailing(
     const limpo = termo.replace(/[,()%]/g, " ").trim();
     if (limpo) {
       consulta = consulta.or(
-        `nome.ilike.%${limpo}%,email.ilike.%${limpo}%,observacao.ilike.%${limpo}%,origem.ilike.%${limpo}%`,
+        `nome.ilike.%${limpo}%,email.ilike.%${limpo}%,cidade.ilike.%${limpo}%,oab.ilike.%${limpo}%,observacao.ilike.%${limpo}%,origem.ilike.%${limpo}%`,
       );
     }
   }

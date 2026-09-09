@@ -5,7 +5,7 @@ import { supabaseConfigurado } from "@/lib/supabase/config";
 
 export default function PaginaLogin() {
   return (
-    <div className="mx-auto max-w-[26rem] py-6">
+    <div className="entra-leve mx-auto max-w-[26rem] py-6">
       <span className="sobrancelha block">Barbosa e Guimarães</span>
       <h1 className="mt-4 font-serif text-[1.75rem] text-bordo-900">
         Painel de artigos

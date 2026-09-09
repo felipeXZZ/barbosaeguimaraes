@@ -5,10 +5,17 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
+/*
+ * "Disparos" está pronto e continua acessível por /admin/disparos, mas fora
+ * do menu por enquanto: o domínio ainda não foi verificado no provedor de
+ * e-mail, e um botão que leva a uma tela que não envia confunde quem usa.
+ * Para trazer de volta, basta reativar a linha comentada abaixo.
+ */
 const ITENS = [
   { href: "/admin", rotulo: "Artigos" },
   { href: "/admin/mensagens", rotulo: "Mensagens" },
   { href: "/admin/mailing", rotulo: "Divulgação" },
+  // { href: "/admin/disparos", rotulo: "Disparos" },
 ] as const;
 
 /**

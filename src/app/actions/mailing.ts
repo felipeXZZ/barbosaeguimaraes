@@ -6,6 +6,7 @@ import { z } from "zod";
 import {
   analisarLista,
   LIMITE_IMPORTACAO,
+  TAMANHO_DO_BLOCO,
   type ContatoImportado,
 } from "@/lib/mailing-importar";
 import { supabaseServidor } from "@/lib/supabase/servidor";
@@ -29,6 +30,127 @@ function tabelaAusente(codigo?: string, mensagem?: string): boolean {
     codigo === "PGRST205" ||
     /Could not find the table/i.test(mensagem ?? "")
   );
+}
+
+/** Um contato lido da planilha, na forma das colunas da tabela. */
+function paraLinha(
+  contato: ContatoImportado,
+  origem: string,
+  ativo: boolean,
+) {
+  return {
+    nome: contato.nome,
+    email: contato.email,
+    telefone: contato.telefone,
+    endereco: contato.endereco,
+    bairro: contato.bairro,
+    cidade: contato.cidade,
+    uf: contato.uf,
+    cep: contato.cep,
+    oab: contato.oab,
+    subsecao: contato.subsecao,
+    observacao: contato.observacao,
+    origem,
+    ativo,
+  };
+}
+
+const esquemaImportado = z.object({
+  nome: z.string().trim().max(120).default(""),
+  email: z.string().trim().email().max(150),
+  telefone: z.string().trim().max(120).default(""),
+  endereco: z.string().trim().max(240).default(""),
+  bairro: z.string().trim().max(120).default(""),
+  cidade: z.string().trim().max(120).default(""),
+  uf: z.string().trim().max(4).default(""),
+  cep: z.string().trim().max(20).default(""),
+  oab: z.string().trim().max(40).default(""),
+  subsecao: z.string().trim().max(120).default(""),
+  observacao: z.string().trim().max(200).default(""),
+});
+
+export type ResultadoBloco =
+  | { status: "ok"; novos: number; recebidos: number; invalidos: number }
+  | { status: "erro"; mensagem: string };
+
+/**
+ * Grava um bloco da planilha. A tela manda de TAMANHO_DO_BLOCO em
+ * TAMANHO_DO_BLOCO: uma lista de cinquenta mil linhas não cabe em uma
+ * requisição só, e assim a barra de progresso tem o que mostrar.
+ */
+export async function importarContatos(
+  contatos: unknown,
+  origem: string,
+  ativo = true,
+): Promise<ResultadoBloco> {
+  const supabase = await supabaseServidor();
+  if (!supabase) return { status: "erro", mensagem: SEM_CONEXAO };
+
+  if (!Array.isArray(contatos) || contatos.length === 0) {
+    return { status: "erro", mensagem: "Nenhum contato recebido." };
+  }
+
+  if (contatos.length > TAMANHO_DO_BLOCO * 2) {
+    return {
+      status: "erro",
+      mensagem: "Bloco grande demais. Recarregue a página e tente de novo.",
+    };
+  }
+
+  const marca = String(origem ?? "").trim().slice(0, 120);
+  const linhas: ReturnType<typeof paraLinha>[] = [];
+  const vistos = new Set<string>();
+  let invalidos = 0;
+
+  for (const bruto of contatos) {
+    const validacao = esquemaImportado.safeParse(bruto);
+    if (!validacao.success) {
+      invalidos += 1;
+      continue;
+    }
+
+    const contato = validacao.data;
+    contato.email = contato.email.toLowerCase();
+
+    /* O e-mail repetido dentro do mesmo bloco faria o upsert reclamar de
+       "ON CONFLICT DO UPDATE command cannot affect row a second time". */
+    if (vistos.has(contato.email)) continue;
+    vistos.add(contato.email);
+
+    linhas.push(paraLinha(contato, marca, ativo));
+  }
+
+  if (linhas.length === 0) {
+    return { status: "ok", novos: 0, recebidos: contatos.length, invalidos };
+  }
+
+  const { data, error } = await supabase
+    .from("mailing")
+    .upsert(linhas, { onConflict: "email", ignoreDuplicates: true })
+    .select("id");
+
+  if (error) {
+    console.error("Falha ao gravar bloco do mailing:", error.message);
+    if (tabelaAusente(error.code, error.message)) {
+      return { status: "erro", mensagem: SEM_TABELA };
+    }
+    return {
+      status: "erro",
+      mensagem: "Não foi possível gravar este bloco. Tente novamente.",
+    };
+  }
+
+  return {
+    status: "ok",
+    novos: data?.length ?? 0,
+    recebidos: contatos.length,
+    invalidos,
+  };
+}
+
+/** Atualiza a listagem depois que a importação termina. */
+export async function revalidarMailing(): Promise<void> {
+  revalidatePath("/admin/mailing");
 }
 
 /**
@@ -59,12 +181,9 @@ export async function importarMailing(
 
   const marca = String(origem ?? "").trim().slice(0, 120);
 
-  const linhas = leitura.contatos.map((contato: ContatoImportado) => ({
-    nome: contato.nome,
-    email: contato.email,
-    observacao: contato.observacao,
-    origem: marca,
-  }));
+  const linhas = leitura.contatos.map((contato: ContatoImportado) =>
+    paraLinha(contato, marca, true),
+  );
 
   let novos = 0;
 

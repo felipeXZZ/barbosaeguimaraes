@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# planilhas de contatos: dado pessoal, nunca vai para o repositorio
+*.xls
+*.xlsx
+*.csv

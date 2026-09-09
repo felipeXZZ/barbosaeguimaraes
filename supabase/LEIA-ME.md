@@ -138,11 +138,33 @@ falta em vez de mostrarem lista vazia. O resto do site continua igual.
 
 Em `/admin/mailing`:
 
-- **Importar lista**: cole os contatos, um por linha, direto da planilha. Vale
+- **Importar planilha**: escolha o `.xlsx` (ou arraste até a área pontilhada) e
+  a tela mostra o que entendeu de cada coluna, para conferir antes de gravar.
+  1. **Aba**: planilha com mais de uma aba deixa escolher qual entra. Uma por
+     vez, então para trazer duas basta importar de novo depois.
+  2. **Linha do cabeçalho**: achada sozinha, pela coluna chamada "Email". Dá
+     para trocar, ou dizer que a planilha não tem cabeçalho.
+  3. **O que é cada coluna**: nome, e-mail, telefone, endereço, bairro, cidade,
+     UF, CEP, inscrição na OAB, subseção e observação. O palpite vem dos nomes
+     das colunas e pode ser corrigido com um clique. Endereço, telefone e
+     observação aceitam várias colunas (logradouro + número + complemento, DDD
+     + telefone), juntadas na ordem do arquivo.
+  4. **CPF fica de fora** de propósito: o site não precisa dele para mandar
+     artigo, e dado que não é usado é dado que não deveria estar guardado.
+  5. **Entrar desligado**: para listas de quem saiu, como uma aba de
+     excluídos. O cadastro fica guardado, mas fora dos envios.
+
+  A gravação vai em blocos, com barra de progresso, porque cinquenta mil linhas
+  não cabem numa requisição só. Deixe a aba aberta até o fim; parar no meio não
+  desfaz o que já entrou, e importar o mesmo arquivo de novo continua de onde
+  parou, sem duplicar.
+
+  CSV também serve, inclusive o salvo pelo Excel em português, com acento. O
+  formato antigo `.xls` não serve: abra no Excel, **Salvar como**, **Pasta de
+  Trabalho do Excel (.xlsx)**.
+- **Colar uma lista curta**: para poucos contatos, um por linha. Vale
   `Ana Souza; ana@exemplo.com; OAB/SP 123456`, `Ana Souza, ana@exemplo.com`,
-  `Ana Souza <ana@exemplo.com>` ou só `ana@exemplo.com`. A tela mostra quantos
-  contatos encontrou antes de gravar. Linha sem e-mail (o cabeçalho da
-  planilha, por exemplo) é pulada.
+  `Ana Souza <ana@exemplo.com>` ou só `ana@exemplo.com`.
 - **E-mail repetido não duplica**: o endereço é único na tabela, então importar
   a mesma planilha duas vezes só acrescenta o que ainda não estava lá.
 - **Interruptor "Recebe"**: tira alguém dos envios sem apagar o cadastro.
@@ -152,8 +174,66 @@ Em `/admin/mailing`:
 
 > Nem a lista nem as mensagens podem ser lidas pela chave pública que vai no
 > navegador: as regras de RLS só entregam essas tabelas a quem está na lista de
-> editores. O envio dos e-mails de divulgação ainda não é feito pelo site: a
-> lista existe para alimentar a ferramenta que o escritório escolher.
+> editores. O disparo dos e-mails está no passo 9.
+
+## 9. Ligar o disparo das matérias
+
+Terceiro arquivo no SQL Editor: [`disparos.sql`](./disparos.sql). Ele cria a
+tabela dos disparos, a fila de destinatários e a função de saída da lista.
+
+Depois disso, falta o provedor de e-mail. No `.env.local` e na Vercel:
+
+```
+RESEND_API_KEY=re_...
+CONTATO_EMAIL_REMETENTE=contato@barbosaadv.com.br
+CONTATO_EMAIL_DESTINO=barbosaadvsite@gmail.com
+```
+
+O remetente precisa ser de **domínio verificado no Resend** (Domains > Add
+domain, e depois os registros SPF e DKIM no DNS de `barbosaadv.com.br`).
+Gmail não serve como remetente. Sem domínio verificado, envio em massa cai
+direto na caixa de spam.
+
+### Como disparar
+
+Em `/admin/disparos`:
+
+1. Escolha a matéria já publicada, confira o assunto e escreva, se quiser, uma
+   linha de abertura.
+2. **Preparar o disparo**. Isso ainda não envia nada: congela quem vai receber,
+   ou seja, todo mundo que está marcado como "Recebe" na lista naquele momento.
+   Quem for cadastrado depois entra no próximo disparo, não neste.
+3. **Enviar teste para o escritório**, e abra o e-mail que chegou para conferir
+   como ficou.
+4. **Enviar para N contatos**. A barra mostra o progresso; o envio vai de
+   cinquenta em cinquenta, com uma pausa entre os blocos para respeitar o
+   limite do provedor.
+
+Dá para **parar no meio** e retomar depois, inclusive de outro computador:
+cada endereço é marcado no banco assim que sai, então ninguém recebe duas
+vezes. Se o provedor recusar um bloco (limite diário estourado, por exemplo),
+o envio para sozinho e a mensagem do provedor aparece na tela; os que faltam
+continuam na fila.
+
+### Saída da lista
+
+Todo e-mail vai com link de saída no rodapé e com o cabeçalho
+`List-Unsubscribe`, que é o que faz o Gmail e o Outlook mostrarem o próprio
+botão de cancelar inscrição. Os dois caminhos desligam o contato na hora:
+
+- o link do rodapé abre `/descadastro`, que pede confirmação (sem isso, o
+  antivírus do servidor de e-mail, que abre os links sozinho para conferir,
+  descadastraria a pessoa sem que ela pedisse);
+- o botão do cliente de e-mail manda um POST para `/api/descadastro`, que
+  desliga direto.
+
+O contato desligado continua cadastrado, aparecendo como "Fora" na lista.
+
+> **Antes do primeiro disparo grande.** Domínio que nunca enviou nada não
+> manda dezenas de milhares de e-mails de uma vez sem ser bloqueado. Comece
+> pelas centenas, olhe quantos voltam e vá subindo ao longo de semanas. Lista
+> antiga tem muito endereço morto, e retorno demais derruba a reputação do
+> domínio, o que atrapalha até o e-mail comum do escritório.
 
 ---
 
@@ -188,10 +268,13 @@ O botão **"Ver como vai ficar"** mostra o resultado antes de publicar.
 | --- | --- |
 | Estrutura do banco (artigos) | [`schema.sql`](./schema.sql) |
 | Estrutura do banco (mensagens e mailing) | [`mensagens-e-mailing.sql`](./mensagens-e-mailing.sql) |
+| Estrutura do banco (disparos) | [`disparos.sql`](./disparos.sql) |
 | Leitura dos artigos | `src/lib/artigos.ts` |
 | Mensagens recebidas | `src/lib/mensagens.ts` |
 | Lista de divulgação | `src/lib/mailing.ts` + `src/lib/mailing-importar.ts` |
-| Ações do painel | `src/app/actions/artigos.ts`, `mensagens.ts`, `mailing.ts` |
+| Disparo das matérias | `src/lib/disparos.ts` + `src/lib/email-disparo.ts` |
+| Saída da lista | `src/app/descadastro/` + `src/app/api/descadastro/` |
+| Ações do painel | `src/app/actions/artigos.ts`, `mensagens.ts`, `mailing.ts`, `disparos.ts` |
 | Telas do painel | `src/app/admin/` |
 | Proteção das rotas | `src/middleware.ts` |
 | Validação dos campos | `src/lib/artigo-schema.ts` |

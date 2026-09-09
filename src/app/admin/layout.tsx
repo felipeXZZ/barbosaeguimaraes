@@ -30,7 +30,7 @@ export default async function LayoutAdmin({
   return (
     <div className="min-h-full bg-areia-50">
       {usuario ? (
-        <header className="border-b border-areia-200 bg-white">
+        <header className="entra-leve border-b border-areia-200 bg-white">
           <div className="mx-auto flex max-w-[72rem] flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 sm:gap-x-6 sm:gap-y-3 sm:px-5 sm:py-4 lg:px-8">
             <Link
               href="/admin"

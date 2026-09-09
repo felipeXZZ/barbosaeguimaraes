@@ -80,7 +80,17 @@ create table if not exists public.mailing (
   id            uuid primary key default gen_random_uuid(),
   nome          text not null default '',
   email         text not null unique,
-  -- Campos livres: OAB, cidade, escritório, o que a planilha trouxer.
+  telefone      text not null default '',
+  -- Endereço completo: logradouro, número e complemento na mesma coluna.
+  endereco      text not null default '',
+  bairro        text not null default '',
+  cidade        text not null default '',
+  uf            text not null default '',
+  cep           text not null default '',
+  -- Número de inscrição na OAB e a subseção, quando a lista trouxer.
+  oab           text not null default '',
+  subsecao      text not null default '',
+  -- Campo livre para o que sobrar da planilha.
   observacao    text not null default '',
   -- De onde veio o contato. Útil para conferir a origem depois.
   origem        text not null default '',
@@ -95,7 +105,19 @@ create table if not exists public.mailing (
   constraint mailing_email_com_arroba check (position('@' in email) > 1)
 );
 
+/* Para quem rodou este arquivo antes das colunas de endereço existirem:
+   acrescenta o que falta sem tocar no que já está gravado. */
+alter table public.mailing add column if not exists telefone text not null default '';
+alter table public.mailing add column if not exists endereco text not null default '';
+alter table public.mailing add column if not exists bairro   text not null default '';
+alter table public.mailing add column if not exists cidade   text not null default '';
+alter table public.mailing add column if not exists uf       text not null default '';
+alter table public.mailing add column if not exists cep      text not null default '';
+alter table public.mailing add column if not exists oab      text not null default '';
+alter table public.mailing add column if not exists subsecao text not null default '';
+
 create index if not exists mailing_ativos_idx on public.mailing (ativo, nome);
+create index if not exists mailing_cidade_idx on public.mailing (cidade);
 
 create or replace function public.tocar_atualizado_em()
 returns trigger

@@ -22,6 +22,18 @@ const REMETENTE =
 
 export const envioConfigurado = Boolean(CHAVE);
 
+/** Remetente usado em todo e-mail que sai do site. */
+export const REMETENTE_PADRAO = `Site ${site.nomeCurto} <${REMETENTE}>`;
+
+/** Cliente do provedor, ou null quando a chave não está configurada. */
+export function clienteResend(): Resend | null {
+  if (!CHAVE) return null;
+  return new Resend(CHAVE);
+}
+
+/** Caixa do escritório, para onde vai o envio de teste. */
+export const CAIXA_DO_ESCRITORIO = DESTINO;
+
 function escapar(texto: string): string {
   return texto
     .replace(/&/g, "&amp;")
