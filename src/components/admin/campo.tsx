@@ -47,7 +47,10 @@ export function Ajuda({
         onFocus={() => setSobre(true)}
         onBlur={() => setSobre(false)}
         className={cn(
-          "flex size-[1.125rem] items-center justify-center rounded-full border transition-colors",
+          "relative flex size-[1.125rem] items-center justify-center rounded-full border transition-colors",
+          /* O ::after amplia o alvo de toque para ~42px sem ocupar espaco no
+             layout: com 18px o dedo erra o "i" no celular. */
+          "after:absolute after:-inset-3",
           "outline-none focus-visible:ring-2 focus-visible:ring-dourado-700 focus-visible:ring-offset-2",
           aberto
             ? "border-bordo-700 bg-bordo-700 text-white"
@@ -144,11 +147,11 @@ export function Secao({
 }) {
   return (
     <section className="border border-areia-200 bg-white">
-      <header className="border-b border-areia-200 bg-areia-50/60 px-6 py-4">
+      <header className="border-b border-areia-200 bg-areia-50/60 px-4 py-4 sm:px-6">
         <h2 className="font-serif text-[1.125rem] text-bordo-900">{titulo}</h2>
         <p className="mt-1 text-[0.8125rem] text-grafite-600">{descricao}</p>
       </header>
-      <div className="flex flex-col gap-6 p-6">{children}</div>
+      <div className="flex flex-col gap-5 p-4 sm:gap-6 sm:p-6">{children}</div>
     </section>
   );
 }

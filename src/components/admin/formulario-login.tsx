@@ -6,8 +6,11 @@ import { useRouter } from "next/navigation";
 
 import { supabaseNavegador } from "@/lib/supabase/navegador";
 
+/* 16px no celular de proposito: com menos que isso o Safari do iPhone da
+   zoom sozinho quando o campo recebe foco, e a pessoa tem que voltar com os
+   dedos a cada toque. Do sm: para cima volta aos 15px do desenho. */
 const CAMPO =
-  "mt-2 block h-12 w-full rounded-[2px] border border-grafite-400 bg-white px-3 text-[0.9375rem] text-grafite-900 outline-none transition-colors placeholder:text-grafite-600/70 focus:border-bordo-700";
+  "mt-2 block h-12 w-full rounded-[2px] border border-grafite-400 bg-white px-3 text-[1rem] text-grafite-900 outline-none transition-colors placeholder:text-grafite-600/70 focus:border-bordo-700 sm:text-[0.9375rem]";
 
 export function FormularioLogin() {
   const router = useRouter();

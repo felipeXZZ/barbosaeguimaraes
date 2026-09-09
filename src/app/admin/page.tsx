@@ -49,7 +49,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
 
   return (
     <>
-      <header className="flex flex-wrap items-end justify-between gap-6">
+      <header className="flex flex-wrap items-end justify-between gap-5 sm:gap-6">
         <div>
           <span className="sobrancelha block">Conteúdo do site</span>
           <h1 className="mt-3 font-serif text-[1.875rem] text-bordo-900">
@@ -64,7 +64,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
 
         <Link
           href="/admin/artigos/novo"
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-[2px] bg-bordo-700 px-6 text-[0.9375rem] font-medium text-white transition-colors hover:bg-bordo-600"
+          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-[2px] bg-bordo-700 px-6 text-[0.9375rem] font-medium text-white transition-colors hover:bg-bordo-600 sm:w-auto"
         >
           <Plus aria-hidden className="size-4" />
           Novo artigo
@@ -72,7 +72,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
       </header>
 
       {artigos.length === 0 ? (
-        <div className="mt-10 border border-areia-200 bg-white p-8">
+        <div className="mt-8 border border-areia-200 bg-white p-6 sm:mt-10 sm:p-8">
           <h2 className="font-serif text-[1.25rem] text-bordo-900">
             A lista está vazia
           </h2>
@@ -89,7 +89,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
         <>
           <nav
             aria-label="Filtrar artigos"
-            className="mt-10 flex flex-wrap items-center gap-1 border-b border-areia-200"
+            className="mt-8 flex items-center gap-1 overflow-x-auto border-b border-areia-200 sm:mt-10 sm:flex-wrap sm:overflow-x-visible"
           >
             {FILTROS.map((item) => {
               const selecionado = item.chave === ativo;
@@ -101,7 +101,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
                   }
                   aria-current={selecionado ? "page" : undefined}
                   className={cn(
-                    "-mb-px inline-flex items-center gap-2 border-b-2 px-4 py-3 text-[0.9375rem] font-medium transition-colors",
+                    "-mb-px inline-flex shrink-0 items-center gap-2 border-b-2 px-3 py-3 text-[0.9375rem] font-medium whitespace-nowrap transition-colors sm:px-4",
                     selecionado
                       ? "border-bordo-700 text-bordo-900"
                       : "border-transparent text-grafite-600 hover:text-bordo-700",
@@ -124,7 +124,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
           </nav>
 
           {visiveis.length === 0 ? (
-            <p className="mt-10 border border-areia-200 bg-white p-8 text-[0.9375rem] text-grafite-600">
+            <p className="mt-8 border border-areia-200 bg-white p-6 text-[0.9375rem] text-grafite-600 sm:mt-10 sm:p-8">
               {ativo === "rascunhos"
                 ? "Nenhum rascunho no momento: tudo que existe já está no site."
                 : "Nenhum artigo publicado no momento."}
@@ -135,12 +135,12 @@ export default async function PaginaAdmin({ searchParams }: Props) {
                 <li
                   key={artigo.id}
                   className={cn(
-                    "group flex flex-wrap items-center gap-x-5 gap-y-4 border border-areia-200 bg-white p-4 transition-colors hover:border-dourado-700/50",
+                    "group flex flex-wrap items-start gap-x-4 gap-y-3 border border-areia-200 bg-white p-3 transition-colors hover:border-dourado-700/50 sm:items-center sm:gap-x-5 sm:gap-y-4 sm:p-4",
                     !artigo.published && "bg-areia-50/60",
                   )}
                 >
                   {/* Miniatura da capa */}
-                  <div className="relative aspect-[16/9] w-28 shrink-0 overflow-hidden rounded-[2px] border border-areia-200 bg-areia-100">
+                  <div className="relative aspect-[16/9] w-20 shrink-0 overflow-hidden rounded-[2px] border border-areia-200 bg-areia-100 sm:w-28">
                     {artigo.coverImage ? (
                       /* eslint-disable-next-line @next/next/no-img-element */
                       <img
@@ -163,7 +163,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
                   </div>
 
                   {/* Texto */}
-                  <div className="min-w-[14rem] flex-1">
+                  <div className="min-w-0 flex-1 sm:min-w-[14rem]">
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.75rem] text-grafite-600">
                       <span className="font-semibold tracking-[0.12em] text-dourado-700 uppercase">
                         {artigo.category}
@@ -194,7 +194,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
                   </div>
 
                   {/* Ações */}
-                  <div className="flex items-center gap-5">
+                  <div className="flex w-full items-center justify-between gap-4 border-t border-areia-200 pt-3 sm:w-auto sm:justify-start sm:gap-5 sm:border-0 sm:pt-0">
                     <InterruptorPublicacao
                       id={artigo.id}
                       titulo={artigo.title}
@@ -203,7 +203,7 @@ export default async function PaginaAdmin({ searchParams }: Props) {
 
                     <Link
                       href={`/admin/artigos/${artigo.id}`}
-                      className="inline-flex h-10 items-center gap-1.5 rounded-[2px] border border-areia-200 px-3 text-[0.875rem] font-medium text-grafite-900 transition-colors hover:border-bordo-700 hover:text-bordo-700"
+                      className="inline-flex h-10 items-center gap-1.5 rounded-[2px] border border-areia-200 px-4 text-[0.875rem] font-medium text-grafite-900 transition-colors hover:border-bordo-700 hover:text-bordo-700 sm:px-3"
                     >
                       <Pencil aria-hidden className="size-3.5" />
                       Editar

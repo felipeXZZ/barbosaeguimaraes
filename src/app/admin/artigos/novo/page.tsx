@@ -16,7 +16,7 @@ export default function PaginaNovoArtigo() {
         Todos os artigos
       </Link>
 
-      <h1 className="mt-6 font-serif text-[1.75rem] text-bordo-900">
+      <h1 className="mt-5 font-serif text-[1.5rem] text-bordo-900 sm:mt-6 sm:text-[1.75rem]">
         Novo artigo
       </h1>
       <p className="mt-2 max-w-[62ch] text-[0.9375rem] text-grafite-600">
@@ -24,7 +24,7 @@ export default function PaginaNovoArtigo() {
         depois de publicado.
       </p>
 
-      <div className="mt-10">
+      <div className="mt-6 sm:mt-10">
         <FormularioArtigo />
       </div>
     </>

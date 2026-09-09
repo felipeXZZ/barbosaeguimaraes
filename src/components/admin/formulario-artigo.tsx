@@ -34,8 +34,11 @@ import {
 import { cn } from "@/lib/utils";
 import type { ArtigoRegistro } from "@/types/content";
 
+/* 16px no celular de proposito: com menos que isso o Safari do iPhone da
+   zoom sozinho quando o campo recebe foco, e a pessoa tem que voltar com os
+   dedos a cada toque. Do sm: para cima volta aos 15px do desenho. */
 const CAMPO =
-  "block w-full rounded-[2px] border border-grafite-400 bg-white px-3 text-[0.9375rem] text-grafite-900 outline-none transition-colors placeholder:text-grafite-600/60 focus:border-bordo-700 focus:ring-2 focus:ring-bordo-700/15";
+  "block w-full rounded-[2px] border border-grafite-400 bg-white px-3 text-[1rem] text-grafite-900 outline-none transition-colors placeholder:text-grafite-600/60 focus:border-bordo-700 focus:ring-2 focus:ring-bordo-700/15 sm:text-[0.9375rem]";
 const CAMPO_LINHA = `${CAMPO} h-12`;
 
 const LIMITE_RESUMO = 320;
@@ -319,9 +322,12 @@ export function FormularioArtigo({ artigo }: { artigo?: ArtigoRegistro }) {
           />
         </Campo>
 
-        <div className="grid gap-6 sm:grid-cols-3">
+        {/* No celular a categoria fica sozinha e data + tempo dividem a
+            linha seguinte: sao campos curtos, um por linha so daria rolagem. */}
+        <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 sm:gap-6">
           <Campo
             id="category"
+            className="col-span-2 sm:col-span-1"
             rotulo="Categoria"
             obrigatorio
             erro={errors.category?.message}
@@ -395,7 +401,7 @@ export function FormularioArtigo({ artigo }: { artigo?: ArtigoRegistro }) {
         titulo="Foto de capa"
         descricao="Imagem que abre o artigo e ilustra o card na listagem."
       >
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5">
           <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden rounded-[2px] border border-areia-200 bg-areia-100 sm:w-72">
             {capa ? (
               /* eslint-disable-next-line @next/next/no-img-element */
@@ -423,6 +429,8 @@ export function FormularioArtigo({ artigo }: { artigo?: ArtigoRegistro }) {
 
           <div className="flex-1">
             <div
+              /* Arrastar arquivo nao existe no celular: la a area serve so de
+                 moldura para o botao, com menos respiro. */
               onDragOver={(evento) => {
                 evento.preventDefault();
                 setArrastando(true);
@@ -430,19 +438,19 @@ export function FormularioArtigo({ artigo }: { artigo?: ArtigoRegistro }) {
               onDragLeave={() => setArrastando(false)}
               onDrop={aoSoltar}
               className={cn(
-                "flex flex-col items-center gap-3 rounded-[2px] border border-dashed p-6 text-center transition-colors",
+                "flex flex-col items-center gap-3 rounded-[2px] border border-dashed p-4 text-center transition-colors sm:p-6",
                 arrastando
                   ? "border-bordo-700 bg-bordo-700/5"
                   : "border-grafite-400 bg-areia-50",
               )}
             >
-              <Upload aria-hidden className="size-5 text-grafite-600" />
-              <p className="text-[0.875rem] text-grafite-600">
+              <Upload aria-hidden className="hidden size-5 text-grafite-600 sm:block" />
+              <p className="hidden text-[0.875rem] text-grafite-600 sm:block">
                 Arraste a foto até aqui
               </p>
               <label
                 htmlFor="arquivo-capa"
-                className="inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-[2px] border border-bordo-700 px-5 text-[0.875rem] font-medium text-bordo-700 transition-colors hover:bg-bordo-700 hover:text-white"
+                className="inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-[2px] border border-bordo-700 px-5 text-[0.9375rem] font-medium text-bordo-700 transition-colors hover:bg-bordo-700 hover:text-white sm:h-11 sm:w-auto sm:text-[0.875rem]"
               >
                 <ImagePlus aria-hidden className="size-4" />
                 {capa ? "Trocar a foto" : "Escolher do computador"}
@@ -558,7 +566,7 @@ export function FormularioArtigo({ artigo }: { artigo?: ArtigoRegistro }) {
           </div>
 
           {prevendo ? (
-            <div className="mt-3 min-h-[24rem] rounded-[2px] border border-areia-200 bg-areia-50 p-6">
+            <div className="mt-3 min-h-[24rem] rounded-[2px] border border-areia-200 bg-areia-50 p-4 sm:p-6">
               {conteudo.trim() ? (
                 <ConteudoMarkdown conteudo={conteudo} />
               ) : (
@@ -568,7 +576,7 @@ export function FormularioArtigo({ artigo }: { artigo?: ArtigoRegistro }) {
           ) : (
             <>
               <div className="mt-3 flex flex-wrap items-center gap-2 rounded-t-[2px] border border-b-0 border-grafite-400 bg-areia-50 px-3 py-2">
-                <span className="text-[0.75rem] font-medium tracking-[0.08em] text-grafite-600 uppercase">
+                <span className="hidden text-[0.75rem] font-medium tracking-[0.08em] text-grafite-600 uppercase sm:inline">
                   Formatar a linha
                 </span>
                 <button
@@ -587,7 +595,9 @@ export function FormularioArtigo({ artigo }: { artigo?: ArtigoRegistro }) {
                   <List aria-hidden className="size-3.5" />
                   Item de lista
                 </button>
-                <span className="text-[0.75rem] text-grafite-600">
+                {/* No celular a legenda sairia numa linha so para ela. O
+                    paragrafo abaixo do campo ja explica o mesmo. */}
+                <span className="hidden text-[0.75rem] text-grafite-600 sm:inline">
                   aplica onde o cursor estiver
                 </span>
               </div>
@@ -620,52 +630,69 @@ export function FormularioArtigo({ artigo }: { artigo?: ArtigoRegistro }) {
       </Secao>
 
       {/* --------------------------------------------------------- Ações */}
-      <div className="sticky bottom-0 z-10 -mx-5 flex flex-wrap items-center gap-3 border-t border-areia-200 bg-areia-50/95 px-5 py-4 backdrop-blur lg:-mx-8 lg:px-8">
-        <button
-          type="button"
-          disabled={isSubmitting}
-          onClick={() => void enviar(false)}
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-[2px] border border-bordo-700 px-5 text-[0.9375rem] font-medium text-bordo-700 transition-colors hover:bg-bordo-700 hover:text-white disabled:opacity-60"
-        >
-          {isSubmitting ? (
-            <Loader2 aria-hidden className="size-4 animate-spin" />
-          ) : null}
-          Salvar rascunho
-        </button>
-
-        <button
-          type="button"
-          disabled={isSubmitting}
-          onClick={() => void enviar(true)}
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-[2px] bg-bordo-700 px-6 text-[0.9375rem] font-medium text-white transition-colors hover:bg-bordo-600 disabled:opacity-60"
-        >
-          {isSubmitting ? (
-            <Loader2 aria-hidden className="size-4 animate-spin" />
-          ) : null}
-          {artigo?.published ? "Salvar e manter no site" : "Publicar no site"}
-        </button>
-
-        {artigo?.published ? (
-          <Link
-            href={`/artigos/${artigo.slug}`}
-            target="_blank"
-            className="inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-bordo-700 underline decoration-dourado-700 underline-offset-4"
-          >
-            Ver no site
-            <ExternalLink aria-hidden className="size-3.5" />
-          </Link>
-        ) : null}
-
-        {artigo ? (
+      {/* No celular a barra tinha quatro filhos em flex-wrap: virava tres
+          linhas de fundo translucido em cima do formulario. Agora sao duas
+          faixas empilhadas e opacas. Do sm: para cima, `contents` desmancha
+          os dois agrupadores e a barra volta a ser a linha unica do desenho. */}
+      <div className="sticky bottom-0 z-10 -mx-4 flex flex-col gap-3 border-t border-areia-200 bg-areia-50 px-4 py-3 shadow-[0_-4px_16px_rgba(26,26,26,0.08)] sm:-mx-5 sm:flex-row sm:flex-wrap sm:items-center sm:bg-areia-50/95 sm:px-5 sm:py-4 sm:shadow-none sm:backdrop-blur lg:-mx-8 lg:px-8">
+        <div className="grid grid-cols-2 gap-3 sm:contents">
           <button
             type="button"
-            disabled={excluindo}
-            onClick={aoExcluir}
-            className="ml-auto inline-flex h-12 items-center gap-2 px-3 text-[0.875rem] font-medium text-erro underline underline-offset-4 disabled:opacity-60"
+            disabled={isSubmitting}
+            onClick={() => void enviar(false)}
+            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-[2px] border border-bordo-700 px-4 text-[0.9375rem] font-medium whitespace-nowrap text-bordo-700 transition-colors hover:bg-bordo-700 hover:text-white disabled:opacity-60 sm:w-auto sm:px-5"
           >
-            <Trash2 aria-hidden className="size-4" />
-            Excluir artigo
+            {isSubmitting ? (
+              <Loader2 aria-hidden className="size-4 animate-spin" />
+            ) : null}
+            Salvar rascunho
           </button>
+
+          <button
+            type="button"
+            disabled={isSubmitting}
+            onClick={() => void enviar(true)}
+            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-[2px] bg-bordo-700 px-4 text-[0.9375rem] font-medium whitespace-nowrap text-white transition-colors hover:bg-bordo-600 disabled:opacity-60 sm:w-auto sm:px-6"
+          >
+            {isSubmitting ? (
+              <Loader2 aria-hidden className="size-4 animate-spin" />
+            ) : null}
+            {/* Meia tela nao cabe "Salvar e manter no site" numa linha. */}
+            <span className="sm:hidden">
+              {artigo?.published ? "Salvar" : "Publicar"}
+            </span>
+            <span className="hidden sm:inline">
+              {artigo?.published ? "Salvar e manter no site" : "Publicar no site"}
+            </span>
+          </button>
+        </div>
+
+        {artigo ? (
+          <div className="flex items-center justify-between gap-4 border-t border-areia-200 pt-2 sm:contents sm:border-0 sm:pt-0">
+            {artigo.published ? (
+              <Link
+                href={`/artigos/${artigo.slug}`}
+                target="_blank"
+                className="inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-bordo-700 underline decoration-dourado-700 underline-offset-4"
+              >
+                Ver no site
+                <ExternalLink aria-hidden className="size-3.5" />
+              </Link>
+            ) : (
+              /* Segura o "Excluir" na direita quando nao ha link de ver. */
+              <span aria-hidden className="sm:hidden" />
+            )}
+
+            <button
+              type="button"
+              disabled={excluindo}
+              onClick={aoExcluir}
+              className="inline-flex h-10 items-center gap-2 text-[0.875rem] font-medium text-erro underline underline-offset-4 disabled:opacity-60 sm:ml-auto sm:h-12 sm:px-3"
+            >
+              <Trash2 aria-hidden className="size-4" />
+              Excluir artigo
+            </button>
+          </div>
         ) : null}
       </div>
     </form>

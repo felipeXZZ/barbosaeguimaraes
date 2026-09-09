@@ -26,7 +26,7 @@ export default async function LayoutAdmin({
     <div className="min-h-full bg-areia-50">
       {usuario ? (
         <header className="border-b border-areia-200 bg-white">
-          <div className="mx-auto flex max-w-[72rem] flex-wrap items-center gap-x-6 gap-y-3 px-5 py-4 lg:px-8">
+          <div className="mx-auto flex max-w-[72rem] flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 sm:gap-x-6 sm:gap-y-3 sm:px-5 sm:py-4 lg:px-8">
             <Link
               href="/admin"
               className="font-serif text-[1.0625rem] text-bordo-900"
@@ -62,9 +62,9 @@ export default async function LayoutAdmin({
         </header>
       ) : null}
 
-      <div className="mx-auto max-w-[72rem] px-5 py-10 lg:px-8 lg:py-14">
+      <div className="mx-auto max-w-[72rem] px-4 py-6 sm:px-5 sm:py-10 lg:px-8 lg:py-14">
         {usuario && !autorizado ? (
-          <div className="mx-auto max-w-[38rem] border border-areia-200 bg-white p-8">
+          <div className="mx-auto max-w-[38rem] border border-areia-200 bg-white p-6 sm:p-8">
             <h1 className="font-serif text-[1.5rem] text-bordo-900">
               Conta sem permissão para publicar
             </h1>
