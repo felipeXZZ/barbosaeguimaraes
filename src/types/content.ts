@@ -82,6 +82,18 @@ export interface Artigo {
   content: string;
 }
 
+/**
+ * Artigo como ele vem do banco: acrescenta o que só o painel usa.
+ * O site público continua trabalhando apenas com `Artigo`.
+ */
+export interface ArtigoRegistro extends Artigo {
+  id: string;
+  /** Rascunho (false) não aparece em nenhuma página pública. */
+  published: boolean;
+  /** ISO 8601 completo, para a coluna "última alteração" do painel. */
+  updatedAt: string;
+}
+
 export interface SlideHero {
   /** Arquivo em /public/images/hero/ */
   src: string;

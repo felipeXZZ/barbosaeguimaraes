@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 /** 8x8 em bordô-900: usado como placeholder desfocado. */
 export const BLUR_BORDO =
-  "data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%278%27 height=%278%27%3E%3Crect width=%278%27 height=%278%27 fill=%27%234A0E11%27/%3E%3C/svg%3E";
+  "data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%278%27 height=%278%27%3E%3Crect width=%278%27 height=%278%27 fill=%27%2349040E%27/%3E%3C/svg%3E";
 
 const cacheExistencia = new Map<string, boolean>();
 

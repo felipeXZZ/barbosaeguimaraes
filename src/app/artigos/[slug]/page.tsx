@@ -11,7 +11,7 @@ import { CtaWhatsApp } from "@/components/shared/cta-whatsapp";
 import { Imagem } from "@/components/shared/imagem";
 import { Revelar } from "@/components/shared/revelar";
 import { FileteRevelado } from "@/components/shared/revelar";
-import { artigos, artigosOrdenados, buscarArtigo } from "@/content/artigos";
+import { buscarArtigo, listarArtigos } from "@/lib/artigos";
 import { site } from "@/content/site";
 import { jsonLdArtigo, jsonLdMigalhas } from "@/lib/jsonld";
 import { formatarData } from "@/lib/utils";
@@ -20,13 +20,16 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export function generateStaticParams() {
+export const revalidate = 1800;
+
+export async function generateStaticParams() {
+  const artigos = await listarArtigos();
   return artigos.map((artigo) => ({ slug: artigo.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const artigo = buscarArtigo(slug);
+  const artigo = await buscarArtigo(slug);
 
   if (!artigo) {
     return { title: "Artigo não encontrado" };
@@ -49,11 +52,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PaginaArtigo({ params }: Props) {
   const { slug } = await params;
-  const artigo = buscarArtigo(slug);
+  const artigo = await buscarArtigo(slug);
 
   if (!artigo) notFound();
 
-  const relacionados = artigosOrdenados
+  const relacionados = (await listarArtigos())
     .filter((item) => item.slug !== artigo.slug)
     .slice(0, 3);
 

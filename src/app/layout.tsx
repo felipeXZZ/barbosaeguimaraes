@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 
 import { BotaoWhatsAppFlutuante } from "@/components/layout/botao-whatsapp-flutuante";
+import { ChromeSite } from "@/components/layout/chrome-site";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { LinkPularConteudo } from "@/components/layout/link-pular-conteudo";
@@ -63,7 +64,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#4A0E11",
+  themeColor: "#49040E",
   colorScheme: "light",
 };
 
@@ -106,13 +107,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         ) : null}
 
         <DadosEstruturados dados={jsonLdEscritorio()} />
-        <LinkPularConteudo />
-        <Header />
+        <ChromeSite>
+          <LinkPularConteudo />
+          <Header />
+        </ChromeSite>
         <main id="conteudo" className="flex-1">
           {children}
         </main>
-        <Footer />
-        <BotaoWhatsAppFlutuante />
+        <ChromeSite>
+          <Footer />
+          <BotaoWhatsAppFlutuante />
+        </ChromeSite>
       </body>
     </html>
   );

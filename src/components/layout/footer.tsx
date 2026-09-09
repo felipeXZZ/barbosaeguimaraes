@@ -97,9 +97,6 @@ export function Footer() {
                   <LinkContato tipo="whatsapp" origem="rodape" />
                 </li>
                 <li>
-                  <LinkContato tipo="telefone" origem="rodape" />
-                </li>
-                <li>
                   <LinkContato tipo="email" origem="rodape" />
                 </li>
               </ul>

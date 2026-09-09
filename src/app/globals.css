@@ -17,10 +17,10 @@
   color-scheme: light;
 
   /* Bordô: herança institucional */
-  --bordo-900: #4a0e11; /* header, footer, overlay do hero */
-  --bordo-800: #6b1216; /* blocos escuros secundários */
-  --bordo-700: #8c1a1f; /* cor institucional principal, botões */
-  --bordo-600: #a8232a; /* hover de botão */
+  --bordo-900: #49040e; /* header, footer, overlay do hero (16.07:1 c/ branco) */
+  --bordo-800: #6b0614; /* blocos escuros secundários (12.64:1 c/ branco) */
+  --bordo-700: #98081d; /* cor institucional principal, botões (8.80:1 c/ branco) */
+  --bordo-600: #ae0921; /* hover de botão (7.34:1 c/ branco) */
 
   /* Dourado: sóbrio, substitui o amarelo berrante do site antigo */
   --dourado-500: #c9a227; /* filetes e ícones SOBRE BORDÔ (6.37:1) */

@@ -9,10 +9,10 @@ import {
   RevelarItem,
 } from "@/components/shared/revelar";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { artigosRecentes } from "@/content/artigos";
+import { artigosRecentes } from "@/lib/artigos";
 
-export function ArtigosRecentes() {
-  const artigos = artigosRecentes(3);
+export async function ArtigosRecentes() {
+  const artigos = await artigosRecentes(3);
 
   if (artigos.length === 0) return null;
 

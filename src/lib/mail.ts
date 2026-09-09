@@ -62,7 +62,7 @@ export async function enviarEmailContato(dados: DadosContato): Promise<void> {
       "Consentimento LGPD registrado no envio do formulário.",
     ].join("\n"),
     html: `
-      <h2 style="font-family:Georgia,serif;color:#4A0E11">Contato pelo site</h2>
+      <h2 style="font-family:Georgia,serif;color:#49040E">Contato pelo site</h2>
       <p><strong>Nome:</strong> ${escapar(dados.nome)}</p>
       <p><strong>E-mail:</strong> ${escapar(dados.email)}</p>
       <p><strong>Telefone:</strong> ${escapar(dados.telefone)}</p>

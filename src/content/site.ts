@@ -18,7 +18,7 @@ export const site = {
   fundacao: ANO_FUNDACAO,
   descricao:
     "Escritório de advocacia com sede no centro de São Paulo, atuando desde 1979 em dez áreas do direito, com atendimento em todo o território nacional.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.barbosaeguimaraes.adv.br",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.barbosaadv.com.br",
 
   endereco: {
     logradouro: "Praça Dr. João Mendes, 42",

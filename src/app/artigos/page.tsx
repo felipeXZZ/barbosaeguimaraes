@@ -4,7 +4,7 @@ import { CabecalhoPagina } from "@/components/shared/cabecalho-pagina";
 import { CardArtigo } from "@/components/shared/card-artigo";
 import { Container } from "@/components/shared/container";
 import { Revelar } from "@/components/shared/revelar";
-import { artigosOrdenados } from "@/content/artigos";
+import { listarArtigos } from "@/lib/artigos";
 
 export const metadata: Metadata = {
   title: "Artigos",
@@ -13,7 +13,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/artigos" },
 };
 
-export default function PaginaArtigos() {
+/* Os artigos vêm do banco. A revalidação é disparada na hora pelo painel;
+   estes 30 minutos são só a rede de segurança. */
+export const revalidate = 1800;
+
+export default async function PaginaArtigos() {
+  const artigos = await listarArtigos();
+
   return (
     <>
       <CabecalhoPagina
@@ -26,7 +32,7 @@ export default function PaginaArtigos() {
       <section className="py-16 lg:py-24">
         <Container>
           <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {artigosOrdenados.map((artigo, indice) => (
+            {artigos.map((artigo, indice) => (
               <li key={artigo.slug}>
                 <Revelar atraso={(indice % 3) * 0.08} className="h-full">
                   <CardArtigo artigo={artigo} />

@@ -3,6 +3,11 @@ import type { Artigo } from "@/types/content";
 /**
  * Artigos migrados do site anterior.
  *
+ * A PARTIR DE AGORA ESTE ARQUIVO É APENAS A CARGA INICIAL: os artigos do
+ * site vêm do Supabase e são editados no painel em /admin. O painel oferece
+ * um botão para importar a lista abaixo para o banco na primeira vez.
+ * Enquanto o Supabase não estiver configurado, o site exibe estes textos.
+ *
  * ATENÇÃO: do site antigo foram preservados os títulos e as datas de
  * publicação. Os textos abaixo foram redigidos para esta versão do site,
  * em linguagem informativa e compatível com o Provimento 205/2021, e
@@ -184,15 +189,3 @@ A confiança se reconstrói por meio de elementos verificáveis:
 A valorização da advocacia depende de atuação institucional das entidades de classe e da conduta individual de cada profissional. As duas dimensões são inseparáveis: normas sem prática cotidiana não produzem efeito, e prática sem norma não se sustenta ao longo do tempo.`,
   },
 ];
-
-export const artigosOrdenados = [...artigos].sort((a, b) =>
-  b.date.localeCompare(a.date),
-);
-
-export function buscarArtigo(slug: string): Artigo | undefined {
-  return artigos.find((artigo) => artigo.slug === slug);
-}
-
-export function artigosRecentes(quantidade = 3): Artigo[] {
-  return artigosOrdenados.slice(0, quantidade);
-}

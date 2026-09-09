@@ -287,7 +287,7 @@ export function FormularioContato({
               "mt-1 size-5 shrink-0 rounded-[2px] border",
               escuro
                 ? "border-areia-50/50 accent-dourado-500"
-                : "border-grafite-400 accent-[#8C1A1F]",
+                : "border-grafite-400 accent-[#98081D]",
             )}
             aria-invalid={Boolean(errors.consentimento)}
             aria-describedby={

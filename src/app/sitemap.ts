@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 
 import { areas } from "@/content/areas";
-import { artigos } from "@/content/artigos";
+import { listarArtigos } from "@/lib/artigos";
 import { site } from "@/content/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const agora = new Date();
+  const artigos = await listarArtigos();
 
   const rotasFixas: MetadataRoute.Sitemap = [
     { url: `${site.url}/`, changeFrequency: "monthly", priority: 1 },
